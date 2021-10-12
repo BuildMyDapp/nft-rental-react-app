@@ -247,7 +247,7 @@ export let rentData = [
     },
     {
         id: 24,
-        name: "Kudzu No 108",
+        name: "Kudzu No 10sss8",
         address: "dsdsasdasdadas",
         token_id: "15",
         standard: "721",
