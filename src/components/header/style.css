@@ -99,25 +99,64 @@
     margin-left: 0rem !important;
   }
   .Navbar ul {
-    width: 32rem !important;
-    margin-left: -4rem;
+    width: 38rem !important;
+    margin-left: -5rem !important;
+  }
+  .header__wallet {
+    margin-top: 2rem !important;
+    margin-left: 1rem;
+  }
+  .header__logo {
+    background-image: url(../../wlogo.svg);
+    background-size: auto 50px !important;
+    background-repeat: no-repeat !important;
+    height: 50px !important;
+    width: 300px !important;
   }
 }
 
 @media (min-width: 458px) {
   .Navbar ul {
+    width: 42rem !important;
+    margin-left: -5rem !important;
+  }
+  .header__wallet {
+    margin-top: 2rem !important;
+    margin-left: 1rem;
+  }
+}
+
+@media (min-width: 576px) {
+  .header__wallet {
+    margin-left: 9rem !important;
+    margin-top: 0 !important;
+  }
+
+  .navbarSelectMain {
+    margin-left: 4rem !important;
+    margin-top: 3rem !important;
+  }
+  .navbarSelectMainX {
+    margin-left: 4rem;
+  }
+  .Navbar ul {
     width: 25rem !important;
-    margin-left: 0rem;
+    margin-left: 1rem !important;
   }
 }
 
 @media (min-width: 767px) {
   .navbarSelectMain {
     margin-left: 5rem !important;
+    margin-top: 5rem !important;
   }
+  .header__wallet {
+    margin-left: 4rem !important;
+  }
+
   .Navbar ul {
     width: 25rem !important;
-    margin-left: 0rem;
+    margin-left: 1rem !important;
   }
   .navbarSelectMainX {
     margin-left: 5rem;
@@ -129,15 +168,20 @@
     margin-left: 5rem;
   }
 }
-@media (min-width: 990px) {
-  .navbarSelectMainX {
-    margin-left: 5rem;
-  }
-}
 
 @media (min-width: 991px) {
   .navbarSelectMainX {
     margin-left: 00em;
+  }
+  .Navbar ul {
+    margin-left: 0rem !important;
+    width: 35rem;
+  }
+  .navbarSelectMain {
+    margin-top: 0rem !important;
+  }
+  .header__wallet {
+    margin-left: 0rem !important;
   }
 }
 

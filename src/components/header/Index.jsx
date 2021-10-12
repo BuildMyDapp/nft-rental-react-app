@@ -65,10 +65,10 @@ const Index = () => {
   return (
     <>
       <div className="row">
-        <div className="col-lg-10 col-sm-6 col-sm-6  offset-4  offset-sm-0  offset-lg-0 offset-md-0  col-md-8     ">
+        <div className="col-lg-10  col-md-8  col-sm-6 col-sm-4  offset-4  offset-sm-0  offset-lg-0 offset-md-0      ">
           <div className="header__logo "></div>
         </div>
-        <div className="col-lg-2 col-sm-6   offset-5   mt-lg-0 mt-md-0 offset-sm-0  offset-lg-0 offset-md-0 col-md-4  text-center     ">
+        <div className="col-lg-2 col-sm-6  offset-5 mt-lg-0 mt-md-0 offset-sm-0 offset-lg-0 offset-md-0 col-md-4 text-center">
           <div className="header__wallet  ">
             <div className="header__wallet-network">
               <p> &nbsp;</p>

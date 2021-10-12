@@ -67,9 +67,19 @@
   border-top: 1px solid black;
 }
 
+@media (min-width: 300px) {
+  .rentScreen {
+    margin-left: 0.2rem !important;
+    width: 550px;
+  }
+  .cardInfo {
+    margin-left: -8rem !important;
+  }
+}
+
 @media (min-width: 400px) {
   .rentScreen {
-    margin-left: 2rem !important;
+    margin-left: 0.2rem !important;
     width: 600px;
   }
   .cardInfo {
@@ -77,6 +87,53 @@
   }
 }
 
+@media (min-width: 460px) {
+  .rentScreen {
+    margin-left: 3rem !important;
+    width: 600px;
+  }
+  .cardInfo {
+    margin-left: -8.5rem !important;
+  }
+}
+@media (min-width: 510px) {
+  .rentScreen {
+    margin-left: 5rem !important;
+    width: 600px;
+  }
+  .cardInfo {
+    margin-left: -8.5rem !important;
+  }
+}
+
+@media (min-width: 567px) {
+  .rentScreen {
+    margin-left: 3rem !important;
+    width: 660px;
+  }
+  .cardInfo {
+    margin-left: -9rem !important;
+  }
+}
+
+@media (min-width: 668px) {
+  .rentScreen {
+    margin-left: 2rem !important;
+    /* width: 710px; */
+  }
+  .cardInfo {
+    margin-left: -5rem !important;
+  }
+}
+@media (min-width: 767px) {
+  .rentScreen {
+    margin-left: 2rem !important;
+    width: 710px;
+  }
+  .cardInfo {
+    margin-left: 0rem !important;
+  }
+}
 @media (min-width: 800px) {
   .rentScreen {
     margin-left: 0rem !important;
