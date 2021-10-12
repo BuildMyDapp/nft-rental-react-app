@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
 import Select from "react-select";
 import { AudioOutlined } from "@ant-design/icons";
 import metamask from "../../metamask.svg";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from 'react-router-dom';
 import "./style.css";
 const Index = () => {
+  const location = useLocation();
   const options = [
     { value: "chocolate", label: "Chocolate" },
     { value: "strawberry", label: "Strawberry" },
@@ -32,36 +33,6 @@ const Index = () => {
   const [isClearable2, setisClearable2] = useState(true);
   const toggleClearable2 = () => setisClearable2(!isClearable2);
 
-  const [selectNavbar, setselectNavbar] = useState(true);
-  const [selectNavbar2, setselectNavbar2] = useState(false);
-  const [selectNavbar3, setselectNavbar3] = useState(false);
-  const [selectNavbar4, setselectNavbar4] = useState(false);
-
-  const changeNavbar = () => {
-    setselectNavbar(true);
-    setselectNavbar2(false);
-    setselectNavbar3(false);
-    setselectNavbar4(false);
-  };
-
-  const changeNavbar2 = () => {
-    setselectNavbar(false);
-    setselectNavbar2(true);
-    setselectNavbar3(false);
-    setselectNavbar4(false);
-  };
-  const changeNavbar3 = () => {
-    setselectNavbar(false);
-    setselectNavbar2(false);
-    setselectNavbar3(true);
-    setselectNavbar4(false);
-  };
-  const changeNavbar4 = () => {
-    setselectNavbar(false);
-    setselectNavbar2(false);
-    setselectNavbar3(false);
-    setselectNavbar4(true);
-  };
   return (
     <>
       <div className="row">
@@ -92,27 +63,29 @@ const Index = () => {
         <div className=" col-sm-6 col-md-6  col-lg-6   offset-sm-0   offset-3   offset-lg-0 offset-md-0       ">
           <div className="Navbar ">
             <ul className="d-lg-flex ">
+            {
+              
+            }
               <Link to="/" style={{ textDecoration: " none" }}>
                 {" "}
                 <li
                   className={
-                    selectNavbar
+                    location.pathname == "/"
                       ? "navbarItem active mb-md-3 mb-lg-0 mb-3  mb-sm-3  "
                       : "navbarItem mb-md-3 mb-lg-0 mb-3"
                   }
-                  onClick={changeNavbar}
                 >
                   RENT
                 </li>
               </Link>
+
               <Link to="/lend" style={{ textDecoration: " none" }}>
                 <li
                   className={
-                    selectNavbar2
+                    location.pathname == "/lend"
                       ? "navbarItem active mb-md-3 mb-lg-0 mb-sm-3 mb-3"
                       : "navbarItem mb-md-3 mb-lg-0 mb-sm-3s mb-3"
                   }
-                  onClick={changeNavbar2}
                 >
                   LEND
                 </li>
@@ -120,11 +93,11 @@ const Index = () => {
               <Link to="/dashboard" style={{ textDecoration: " none" }}>
                 <li
                   className={
-                    selectNavbar3
+                    location.pathname == "/dashboard"
+
                       ? "navbarItem active mb-md-3 mb-lg-0 mb-sm-3 mb-3"
                       : "navbarItem mb-md-3 mb-lg-0 mb-sm-3 mb-3"
                   }
-                  onClick={changeNavbar3}
                 >
                   MY DASHBOARD
                 </li>
@@ -132,11 +105,10 @@ const Index = () => {
               <Link to="/faq" style={{ textDecoration: " none" }}>
                 <li
                   className={
-                    selectNavbar4
+                    location.pathname == "/faq"
                       ? "navbarItem active mb-md-3 mb-lg-0 mb-sm-3"
                       : "navbarItem mb-md-3 mb-lg-0 mb-sm-3"
                   }
-                  onClick={changeNavbar4}
                 >
                   FAQ
                 </li>
