@@ -6,9 +6,11 @@ import "./style-R.css";
 import "./style.css";
 import RentCard from "./card";
 import { rentData } from "../../data/index";
+import { useStore } from '../../context/GlobalState';
 
 const Rent = () => {
   const pageSize = 8;
+  const [{ web3, accounts, apiUrl }, dispatch] = useStore();
 
   const [rentStateData, setRentStateData] = useState([]);
   console.log(rentStateData);
@@ -18,7 +20,11 @@ const Rent = () => {
   const [totalPage, settotalPage] = useState(0);
 
   useEffect(async () => {
-    let fetchData = await rentData;
+    let fetchData = await fetch(`${apiUrl}list_nfts`)
+    fetchData = await fetchData.json();
+    console.log("fetcgDatafetcgData",fetchData)
+
+    fetchData = fetchData ? fetchData.data : fetchData;
     setRentStateData(fetchData);
     setminValue(0);
     setmaxValue(pageSize);

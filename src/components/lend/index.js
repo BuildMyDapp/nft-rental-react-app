@@ -6,9 +6,12 @@ import "./style-R.css";
 import "./style.css";
 import RentCard from "./card";
 import { rentData } from "../../data/index";
+import { useStore } from '../../context/GlobalState';
 
 const Lend = () => {
   const pageSize = 8;
+  const [{ web3, contract, accounts, apiUrl }, dispatch] = useStore();
+
 
   const [rentStateData, setRentStateData] = useState([]);
   console.log(rentStateData);
@@ -18,12 +21,30 @@ const Lend = () => {
   const [totalPage, settotalPage] = useState(0);
 
   useEffect(async () => {
-    let fetchData = await rentData;
+    if(web3 && contract && accounts[0]) {
+    const myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+    myHeaders.append('Authorization', `Bearer ${process.env.REACT_APP_SIGN}`);
+    let ownerAddress = accounts[0];
+    const requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: JSON.stringify({
+          ownerAddress
+        })
+    };
+    let fetchData = await fetch(`${apiUrl}lend_nft_list`,requestOptions)
+    fetchData = await fetchData.json();
+    console.log("fetcgDatafetcgData",fetchData)
+
+    fetchData = fetchData ? fetchData.data : fetchData;
     setRentStateData(fetchData);
     setminValue(0);
     setmaxValue(pageSize);
     settotalPage(fetchData.length / pageSize);
-  }, []);
+  }
+}
+, [web3,contract,accounts]);
 
   function onChange(checked) {
     console.log(`switch to ${checked}`);

@@ -63,12 +63,8 @@ const PublishNftForm = () => {
     initialValues: {
       name: '',
       description: '',
-      // supply: '',
-      category: "",
       external_link: "",
-      price: "",
       creator_name: "",
-      user_email: ""
 
     },
     validationSchema: validationSchema,
@@ -76,14 +72,11 @@ const PublishNftForm = () => {
       // alert(JSON.stringify(values, null, 2));
       // values.imgUri = fileUrl
       console.log("values", values)
-      handlePublishNft(values.name, values.description, "1",
-        values.price * 10 ** 18, values.external_link, accounts[0], values.creator_name, values.user_email,
-        values.category
+      handlePublishNft(values.name, values.description,values.external_link, accounts[0], values.creator_name
       )
     },
   });
-  const handlePublishNft = async (name, description, network,
-    price, external_link, owner_address, creator_name, user_email, category) => {
+  const handlePublishNft = async (name, description, external_link, owner_address, creator_name) => {
     try {
       const myHeaders = new Headers();
 
@@ -95,9 +88,8 @@ const PublishNftForm = () => {
         headers: myHeaders,
 
         body: JSON.stringify({
-          name, description, network,
-          price, image_uri, external_link, owner_address,
-          creator_name, user_email, category
+          name, description,image_uri, external_link, owner_address,
+          creator_name, 
         })
       };
       let submitForm = await fetch(`${apiUrl}save_nft`, requestOptions)
@@ -143,24 +135,7 @@ const PublishNftForm = () => {
               className="p-form-input"
 
             />
-            <p>
-              <b>*Email: </b>
-              Your Email
-                </p>
-            <TextField
-              fullWidth
-              id="user_email"
-              name="user_email"
-              label="*Email"
-              variant="filled"
-              color="secondary"
-              type="email"
-              value={formik.values.user_email}
-              helperText={`${formik.values.user_email.length}/${50}`}
-              onChange={formik.handleChange}
-              className="p-form-input"
-
-            />
+         
             <p>
               <b>*Description: </b>
               The description will be included on the item's detail page underneath its image.
@@ -197,28 +172,7 @@ const PublishNftForm = () => {
             />
 
            
-            {
-              Math.sign(formik.values.price) != "-1" ?
-                "" : <span style={{ color: "red" }}>Value Should be positive</span>
-            }
-            <p>
-              <b>*Price: </b>
-              Price of your NFT.
-              </p>
-            <TextField
-              fullWidth
-              id="filled-secondary"
-              name="price"
-              label="*Price"
-              variant="filled"
-              color="secondary"
-              value={formik.values.price}
-              helperText={`${formik.values.price.length}/${10}`}
-              onChange={formik.handleChange}
-              className="p-form-input"
-
-
-            />
+          
 
             <p>
               <b>*Creator Name: </b>

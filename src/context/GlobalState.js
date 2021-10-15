@@ -10,7 +10,7 @@ const initialState = {
     accounts: [],
     contract: null,
     apiTrigger: false,
-    apiUrl: process.env.REACT_APP_API_LIVE_URL,
+    apiUrl: "http://localhost:8080/",
     web3LoadingErrorMessage: "",
     web3Loadded: false
 }
