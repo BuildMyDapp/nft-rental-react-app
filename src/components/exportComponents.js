@@ -4,3 +4,4 @@ export { default as Lend } from "./lend/index";
 export { default as Dashboard } from "./dashboard/index";
 export { default as Faq } from "./faq/index";
 export { default as Header } from "./header/Index";
+export { default as PublishNft } from "./publishNft/index";

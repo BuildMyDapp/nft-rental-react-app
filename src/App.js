@@ -6,6 +6,7 @@ import {
   Dashboard,
   Faq,
   Header,
+  PublishNft
 } from "./components/exportComponents";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route path="/lend" element={<Lend />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/faq" element={<Faq />} />
+            <Route path="/publish_nft" element={<PublishNft />} />
             <Route path="*" element={<Error404 />} />
           </Routes>
         </div>
