@@ -1,6 +1,6 @@
 import { setupWeb3, setupContract, setNetwork, addEthereumAccounts, addTransaction, web3LoadingError } from "./actions";
 import Web3 from "web3";
-import { CONTRACT_ABI, CONTRACT_ADDRESS } from '../contract/ABI';
+import { RENTAL_ABI, RENTAL_ADDRESS } from '../contract/RENTAL';
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
 export const loadBlockchain = async (dispatch) => {
@@ -18,7 +18,7 @@ export const loadBlockchain = async (dispatch) => {
             const web3 = new Web3(Web3.givenProvider);
             await Web3.givenProvider.enable();
             dispatch(setupWeb3(web3));
-            const contract = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS);
+            const contract = new web3.eth.Contract(RENTAL_ABI, RENTAL_ADDRESS);
             dispatch(setupContract(contract));
             const accounts = await web3.eth.getAccounts();
             dispatch(addEthereumAccounts(accounts));
@@ -56,7 +56,7 @@ export const loadWalletConnect = async (dispatch) => {
 
             // await Web3.givenProvider.enable();
             dispatch(setupWeb3(web3));
-            const contract = new web3.eth.Contract(CONTRACT_ABI, CONTRACT_ADDRESS);
+            const contract = new web3.eth.Contract(RENTAL_ABI, RENTAL_ADDRESS);
             console.log("this is for contract", contract)
 
             dispatch(setupContract(contract));
