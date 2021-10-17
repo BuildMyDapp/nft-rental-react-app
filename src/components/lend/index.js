@@ -7,7 +7,7 @@ import "./style.css";
 import RentCard from "./card";
 import { rentData } from "../../data/index";
 import { useStore } from '../../context/GlobalState';
-import  Moralis from 'moralis';
+import Moralis from 'moralis';
 
 const Lend = () => {
   const pageSize = 8;
@@ -20,32 +20,33 @@ const Lend = () => {
   const [maxValue, setmaxValue] = useState(0);
   const [current, setCurrentPage] = useState(1);
   const [totalPage, settotalPage] = useState(0);
+  const [allNftData, setAllNftData] = useState()
 
   useEffect(async () => {
-    if(web3 && contract && accounts[0]) {
-    const myHeaders = new Headers();
-    myHeaders.append('Content-Type', 'application/json');
-    myHeaders.append('Authorization', `Bearer ${process.env.REACT_APP_SIGN}`);
-    let ownerAddress = accounts[0];
-    const requestOptions = {
+    if (web3 && contract && accounts[0]) {
+      const myHeaders = new Headers();
+      myHeaders.append('Content-Type', 'application/json');
+      myHeaders.append('Authorization', `Bearer ${process.env.REACT_APP_SIGN}`);
+      let ownerAddress = accounts[0];
+      const requestOptions = {
         method: 'POST',
         headers: myHeaders,
         body: JSON.stringify({
           ownerAddress
         })
-    };
-    let fetchData = await fetch(`${apiUrl}lend_nft_list`,requestOptions)
-    fetchData = await fetchData.json();
-    console.log("fetcgDatafetcgData",fetchData)
+      };
+      let fetchData = await fetch(`${apiUrl}lend_nft_list`, requestOptions)
+      fetchData = await fetchData.json();
+      console.log("fetcgDatafetcgData", fetchData)
 
-    fetchData = fetchData ? fetchData.data : fetchData;
-    setRentStateData(fetchData);
-    setminValue(0);
-    setmaxValue(pageSize);
-    settotalPage(fetchData.length / pageSize);
+      // fetchData = fetchData ? fetchData.data : fetchData;
+      // setRentStateData(fetchData);
+      // setminValue(0);
+      // setmaxValue(pageSize);
+      // settotalPage(fetchData.length / pageSize);
+    }
   }
-}
-, [web3,contract,accounts]);
+    , [web3, contract, accounts]);
 
   function onChange(checked) {
     console.log(`switch to ${checked}`);
@@ -57,24 +58,38 @@ const Lend = () => {
     setmaxValue(value * pageSize);
   };
 
-  React.useEffect(async()=>{
+  React.useEffect(async () => {
     const serverUrl = "https://zrgs9ntgp1xg.grandmoralis.com:2053/server";
     const appId = "ehjdZ3SrJBc8mvotS9zIVpJ3ERQ1hXLolg9rJo2d";
     // let t = await Moralis.start({serverUrl,appId})
     Moralis.initialize("ehjdZ3SrJBc8mvotS9zIVpJ3ERQ1hXLolg9rJo2d", "", "sO7IJveC1wGqenEclYGF8He9mdAqkqBASB34l5bp");
-    Moralis.serverURL = 'https://zrgs9ntgp1xg.grandmoralis.com:2053/server'    
+    Moralis.serverURL = 'https://zrgs9ntgp1xg.grandmoralis.com:2053/server'
     // console.log("lol",t)
-        Moralis.authenticate().then(async function (user) {
-          console.log("etherAddress",user.get("ethAddress"))
-          const users = Moralis.User.current();
-          console.log("user",users)
-          Moralis.start({ serverUrl, appId });
-          const options = { address: "0x32aa08334e255e8c44b92599e2b43c9587fd5568", chain: "rinkeby" };
-          const metaData = await Moralis.Web3API.token.getNFTMetadata(options);
-          console.log("metaData",metaData)
-    
-        })
-    },[])
+    Moralis.authenticate().then(async function (user) {
+      console.log("etherAddress", user.get("ethAddress"))
+      const users = Moralis.User.current();
+      console.log("user", users)
+      Moralis.start({ serverUrl, appId });
+      const options = { address: "0x32aa08334e255e8c44b92599e2b43c9587fd5568", chain: "rinkeby" };
+      const metaData = await Moralis.Web3API.token.getNFTMetadata(options);
+      const usernftBalance = await Moralis.Web3.getNFTs({ chain: "rinkeby" })
+      console.log("usernftBalance", usernftBalance)
+      console.log("metaData", metaData)
+      let nftArray = []
+      // for(let i = 0;  i < usernftBalance.length; i++) {
+      for (let i = 0; i < usernftBalance.length; i++) {
+        let fetchData = await fetch(usernftBalance[i].token_uri)
+        fetchData = await fetchData.json();
+        nftArray.push(fetchData);
+        console.log("dsdsad", fetchData)
+      }
+      // setAllNftData(nftArray)
+      setRentStateData(nftArray);
+      setminValue(0);
+      setmaxValue(pageSize);
+      settotalPage(nftArray.length / pageSize);
+    })
+  }, [])
 
   return (
     <>
@@ -92,14 +107,14 @@ const Lend = () => {
           <div className="row cardInfo">
             {rentStateData
               ? rentStateData.map(
-                  (data, index) =>
-                    index >= minValue &&
-                    index < maxValue && (
-                      <div className="col-md-6 col-lg-4 col-sm-12 offset-sm-2 offset-3 col-xl-3  offset-lg-0 offset-md-0  ">
-                        <RentCard data={data} />
-                      </div>
-                    )
-                )
+                (data, index) =>
+                  index >= minValue &&
+                  index < maxValue && (
+                    <div className="col-md-6 col-lg-4 col-sm-12 offset-sm-2 offset-3 col-xl-3  offset-lg-0 offset-md-0  ">
+                      <RentCard data={data} />
+                    </div>
+                  )
+              )
               : ""}
           </div>
           <div className="row">
@@ -107,7 +122,7 @@ const Lend = () => {
               <Pagination
                 pageSize={pageSize}
                 current={current}
-                total={rentStateData?.length}
+                total={rentStateData ?.length}
                 onChange={handleChange}
                 style={{ bottom: "0px" }}
               />
