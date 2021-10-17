@@ -7,6 +7,7 @@ import "./style.css";
 import RentCard from "./card";
 import { rentData } from "../../data/index";
 import { useStore } from '../../context/GlobalState';
+import  Moralis from 'moralis';
 
 const Lend = () => {
   const pageSize = 8;
@@ -55,6 +56,25 @@ const Lend = () => {
     setminValue((value - 1) * pageSize);
     setmaxValue(value * pageSize);
   };
+
+  React.useEffect(async()=>{
+    const serverUrl = "https://zrgs9ntgp1xg.grandmoralis.com:2053/server";
+    const appId = "ehjdZ3SrJBc8mvotS9zIVpJ3ERQ1hXLolg9rJo2d";
+    // let t = await Moralis.start({serverUrl,appId})
+    Moralis.initialize("ehjdZ3SrJBc8mvotS9zIVpJ3ERQ1hXLolg9rJo2d", "", "sO7IJveC1wGqenEclYGF8He9mdAqkqBASB34l5bp");
+    Moralis.serverURL = 'https://zrgs9ntgp1xg.grandmoralis.com:2053/server'    
+    // console.log("lol",t)
+        Moralis.authenticate().then(async function (user) {
+          console.log("etherAddress",user.get("ethAddress"))
+          const users = Moralis.User.current();
+          console.log("user",users)
+          Moralis.start({ serverUrl, appId });
+          const options = { address: "0x32aa08334e255e8c44b92599e2b43c9587fd5568", chain: "rinkeby" };
+          const metaData = await Moralis.Web3API.token.getNFTMetadata(options);
+          console.log("metaData",metaData)
+    
+        })
+    },[])
 
   return (
     <>
