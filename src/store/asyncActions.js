@@ -247,3 +247,25 @@ export const lendAsync = async(web3,contract,accounts) =>{
         return error
     }
 }
+
+export const rentAsync = async(web3,contract,accounts) =>{
+    try{
+    let receipt = await contract.methods.rent(["0x32aa08334e255e8c44b92599e2b43c9587fd5568"],["0"],["0"],["2"]).send({from:accounts[0]});
+        return receipt
+    }   
+    catch(error){
+        console.log("error",error)
+        return error
+    }
+}
+
+export const stopLendingAsync = async(web3,contract,accounts) =>{
+    try{
+    let receipt = await contract.methods.stopLending(["0x32aa08334e255e8c44b92599e2b43c9587fd5568"],["0"],["0"]).send({from:accounts[0]});
+        return receipt
+    }   
+    catch(error){
+        console.log("error",error)
+        return error
+    }
+}
