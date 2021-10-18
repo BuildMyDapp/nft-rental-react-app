@@ -2,6 +2,7 @@ import { setupWeb3, setupContract, setNetwork, addEthereumAccounts, addTransacti
 import Web3 from "web3";
 import { RENTAL_ABI, RENTAL_ADDRESS } from '../contract/RENTAL';
 import WalletConnectProvider from "@walletconnect/web3-provider";
+import { ethers } from 'ethers';
 
 export const loadBlockchain = async (dispatch) => {
     try {
@@ -220,85 +221,29 @@ export const changePriceAsync = async (web3, contract, accounts, amount, id,
 
     }
 }
+export const lendAsync = async(web3,contract,accounts) =>{
+    console.log("contractfunction",contract)
 
-// https://www.bakeryswap.org/?utm_source=DappRadar&utm_medium=deeplink&utm_campaign=visit-website#/home
 
-export const pauseMintingAsync = async (contract, accounts) => {
-    try {
-        const receipt = await contract.methods
-            .pauseMinting()
-            .send({ from: accounts[0] });
+    try{
+        let nftPricce = web3.utils.asciiToHex("2000")
+        console.log("contractfunctiossn",nftPricce)
+        nftPricce = nftPricce.slice(0, 10) 
+        console.log("contractfunctiossn",nftPricce)
 
-        console.log("receipt", receipt)
-        return true;
-    }
-    catch (error) {
-        console.log("error", error)
-        return false;
+        let dailyRent = web3.utils.asciiToHex("1000")
+        // console.log("contractfunctiossn",dailyRent)
+        dailyRent = dailyRent.slice(0, 10) 
+        console.log("contractfunctiossn",dailyRent)
+        let bytes32 = ethers.utils.formatBytes32String("100")
+        console.log("bytes32",bytes32)
 
-    }
-}
 
-export const unPauseMintingAsync = async (contract, accounts) => {
+        let receipt = await contract.methods.lend(["0x32aa08334e255e8c44b92599e2b43c9587fd5568"],["0"],["10000"],["2"],[dailyRent],[nftPricce],["10"]).send({from:accounts[0]});
 
-    try {
-        const receipt = await contract.methods
-            .unPauseMinting()
-            .send({ from: accounts[0] });
-        console.log("receipt", receipt)
-        return true;
-    }
-    catch (error) {
-        console.log("error", error)
-        return false;
-
+    }   
+    catch(error){
+        console.log("error",error)
+        return error
     }
 }
-
-export const changeTaxAddressAsync = async (contract, accounts, address) => {
-    try {
-        const receipt = await contract.methods
-            .changeTaxAddress(address)
-            .send({ from: accounts[0] });
-        console.log("receipt", receipt)
-        return true;
-    }
-    catch (error) {
-        console.log("error", error)
-        return false;
-
-    }
-}
-
-export const changeTaxPercentgAsync = async (contract, accounts, perc) => {
-    try {
-        const receipt = await contract.methods
-            .changeTaxPercent(perc)
-            .send({ from: accounts[0] });
-        console.log("receipt", receipt)
-        return true;
-    }
-    catch (error) {
-        console.log("error", error)
-        return false;
-
-    }
-}
-
-export const getUnPauseMintingAsync = async (contract, accounts) => {
-
-    try {
-        const receipt = await contract.methods
-            .paused()
-            .call();
-        console.log("receipt", receipt)
-        return true;
-    }
-    catch (error) {
-        console.log("error", error)
-        return false;
-
-    }
-}
-
-

@@ -8,6 +8,8 @@ import RentCard from "./card";
 import { rentData } from "../../data/index";
 import { useStore } from '../../context/GlobalState';
 import Moralis from 'moralis';
+import {lendAsync} from '../../store/asyncActions'
+
 
 const Lend = () => {
   const pageSize = 8;
@@ -91,10 +93,23 @@ const Lend = () => {
     })
   }, [])
 
+  const handleLend = async() =>{
+    try{
+      console.log("handleLend")
+
+      let receipt =  await lendAsync(web3,contract,accounts);
+    }
+    catch(error){
+      console.log("error",error)
+    }
+  }
+
   return (
     <>
       {/* Rent Screen  */}
       <div className=" ">
+      <button className="btn btn-block rentBtn" onClick={handleLend}> RENT NOW</button>
+
         <div className="row my-4 rentScreen   ">
           <div className="row  ">
             <div className=" mt-4 my-2 ms-lg-5    col-lg-11 d-flex justify-content-end">

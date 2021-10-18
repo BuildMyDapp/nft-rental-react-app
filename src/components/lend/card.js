@@ -4,8 +4,25 @@ import "./style.css";
 import { Card } from "antd";
 import opensea from "../../../src/opensea.png";
 import rarible from "../../../src/rarible.png";
+import {lendAsync} from '../../store/asyncActions'
+import { useStore } from '../../context/GlobalState';
+
 const RentCard = ({ data }) => {
+  const [{ web3, contract, accounts, apiUrl }, dispatch] = useStore();
+
   console.log(data);
+
+
+  const handleLend = async() =>{
+    try{
+      console.log("handleLend")
+
+      let receipt =  await lendAsync(web3,contract,accounts);
+    }
+    catch(error){
+      console.log("error",error)
+    }
+  }
   return (
     <>
       <Card
@@ -56,7 +73,7 @@ const RentCard = ({ data }) => {
           </p>
           <p>Collateral [WETH] {data.colletral}</p>
         </div>
-        <button className="btn btn-block rentBtn"> RENT NOW</button>
+        <button className="btn btn-block rentBtn" onClick={handleLend}> RENT NOW</button>
       </Card>
     </>
   );
