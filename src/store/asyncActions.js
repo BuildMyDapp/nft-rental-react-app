@@ -232,13 +232,9 @@ export const lendAsync = async(web3,contract,accounts) =>{
         console.log("contractfunctiossn",nftPricce)
 
         let dailyRent = web3.utils.asciiToHex("1000")
-        // console.log("contractfunctiossn",dailyRent)
         dailyRent = dailyRent.slice(0, 10) 
         console.log("contractfunctiossn",dailyRent)
         let bytes32 = ethers.utils.formatBytes32String("100")
-        console.log("bytes32",bytes32)
-
-
         let receipt = await contract.methods.lend(["0x32aa08334e255e8c44b92599e2b43c9587fd5568"],["0"],["10000"],["2"],[dailyRent],[nftPricce],["10"]).send({from:accounts[0]});
 
     }   

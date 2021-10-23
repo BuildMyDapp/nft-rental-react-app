@@ -51,7 +51,7 @@ const RentCard = ({ data }) => {
           <img
             alt="card "
             className="cardImg"
-            src={data?.image}
+            src={data?.image_uri}
             width="240"
             height="200"
           />

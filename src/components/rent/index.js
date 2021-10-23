@@ -20,15 +20,15 @@ const Rent = () => {
   const [totalPage, settotalPage] = useState(0);
 
   useEffect(async () => {
-    let fetchData = await fetch(`${apiUrl}list_nfts`)
-    fetchData = await fetchData.json();
-    console.log("fetcgDatafetcgData",fetchData)
+    // let fetchData = await fetch(`${apiUrl}list_nfts`)
+    // fetchData = await fetchData.json();
+    // console.log("fetcgDatafetcgData",fetchData)
 
-    fetchData = fetchData ? fetchData.data : fetchData;
-    setRentStateData(fetchData);
+    // fetchData = fetchData ? fetchData.data : fetchData;
+    setRentStateData(rentData);
     setminValue(0);
     setmaxValue(pageSize);
-    settotalPage(fetchData.length / pageSize);
+    settotalPage(rentData.length / pageSize);
   }, []);
 
   function onChange(checked) {
