@@ -4,8 +4,6 @@ import { AudioOutlined } from "@ant-design/icons";
 import metamask from "../../metamask.svg";
 import { Link, useLocation } from 'react-router-dom';
 import "./style.css";
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 import "./style.css";
 const Index = () => {
   const location = useLocation();
