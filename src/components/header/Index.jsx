@@ -4,8 +4,12 @@ import { AudioOutlined } from "@ant-design/icons";
 import metamask from "../../metamask.svg";
 import { Link, useLocation } from 'react-router-dom';
 import "./style.css";
+import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import "./style.css";
 const Index = () => {
   const location = useLocation();
+
   const options = [
     { value: "chocolate", label: "Chocolate" },
     { value: "strawberry", label: "Strawberry" },
@@ -70,7 +74,8 @@ const Index = () => {
                 {" "}
                 <li
                   className={
-                    location.pathname == "/"
+
+                    location?.pathname == "/"
                       ? "navbarItem active mb-md-3 mb-lg-0 mb-3  mb-sm-3  "
                       : "navbarItem mb-md-3 mb-lg-0 mb-3"
                   }
@@ -82,7 +87,8 @@ const Index = () => {
               <Link to="/lend" style={{ textDecoration: " none" }}>
                 <li
                   className={
-                    location.pathname == "/lend"
+
+                    location?.pathname == "/lend"
                       ? "navbarItem active mb-md-3 mb-lg-0 mb-sm-3 mb-3"
                       : "navbarItem mb-md-3 mb-lg-0 mb-sm-3s mb-3"
                   }
@@ -93,8 +99,7 @@ const Index = () => {
               <Link to="/dashboard" style={{ textDecoration: " none" }}>
                 <li
                   className={
-                    location.pathname == "/dashboard"
-
+                    location?.pathname == "/dashboard"
                       ? "navbarItem active mb-md-3 mb-lg-0 mb-sm-3 mb-3"
                       : "navbarItem mb-md-3 mb-lg-0 mb-sm-3 mb-3"
                   }
@@ -105,7 +110,7 @@ const Index = () => {
               <Link to="/faq" style={{ textDecoration: " none" }}>
                 <li
                   className={
-                    location.pathname == "/faq"
+         location?.pathname == "/faq"
                       ? "navbarItem active mb-md-3 mb-lg-0 mb-sm-3"
                       : "navbarItem mb-md-3 mb-lg-0 mb-sm-3"
                   }
