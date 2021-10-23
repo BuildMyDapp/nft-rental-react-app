@@ -112,7 +112,7 @@ const Lend = () => {
     <>
       {/* Rent Screen  */}
       <div className=" ">
-      {/* <button className="btn btn-block rentBtn" onClick={handleLend}> RENT NOW</button> */}
+      <button className="btn btn-block rentBtn" onClick={handleLend}> RENT NOW</button>
 
         <div className="row my-4 rentScreen   ">
           <div className="row  ">

@@ -235,7 +235,7 @@ export const lendAsync = async(web3,contract,accounts) =>{
         dailyRent = dailyRent.slice(0, 10) 
         console.log("contractfunctiossn",dailyRent)
         let bytes32 = ethers.utils.formatBytes32String("100")
-        let receipt = await contract.methods.lend(["0x32aa08334e255e8c44b92599e2b43c9587fd5568"],["0"],["10000"],["2"],[dailyRent],[nftPricce],["10"]).send({from:accounts[0]});
+        let receipt = await contract.methods.lend(["0x0db8C099B426677f575D512874D45A767e9acC3c"],["1"],["1"],["60"],["0x000000a0"],["0x000000a0"],["1"]).send({from:accounts[0]});
 
     }   
     catch(error){
