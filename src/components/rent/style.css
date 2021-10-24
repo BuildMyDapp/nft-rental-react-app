@@ -1,38 +1,116 @@
 .rentScreen {
-  background-color: #e83f7a !important;
+  /* background-color: #e83f7a !important;
   border: 4px solid #000 !important;
   box-shadow: 6px 6px 0 #000 !important;
-  width: 100%;
+  width: 100%; */
 }
+.cardDataName
+{
+  font-weight: 500 !important;
+  color:#707A83 !important ;
+  /* font-size:0.8rem; */
+}
+.cardDataNameX
+{
+  font-weight: 600 !important;
+  /* color:#707A83 !important ; */
+  font-size:1rem;
+  margin-top: -1rem;
+   
+}
+.price
+{
+  font-weight: 600;
+  color:#707A83 !important ;
+  /* margin-top: 0.29rem; */
+}
+ 
+.eth-icon
+{
+  margin-top: -0.8rem !important;
 
+}
+.footer
+{
+  background:linear-gradient(rgba(229, 232, 235, 0.392) 0%, rgb(255, 255, 255) 20%) !important; 
+  margin: 0 !important;
+  padding: 0 ;
+  height: 16px !important;
+  /* width: 50px !important; */
+}
+.setting
+{
+  margin-top: 0.8rem !important; 
+  /* color: #e5e8eb56 !important; */
+
+}
+.Hearticon
+{
+  margin-top: 0.8rem;
+}
+.ant-btn.ant-dropdown-trigger
+{
+  /* padding: 20px 64px !important; */
+  width:250px;
+  height: 50px;
+  padding: 20px;
+  /* height: px; */
+  border-radius:8px !important ;
+  display: flex;
+  justify-content: space-between !important;
+
+}
+.ant-btn.ant-dropdown-trigger span 
+{
+   font-weight: 600;
+   margin-top: -8px;
+}
+.ant-dropdown-trigger > .anticon.anticon-down, .ant-dropdown-link > .anticon.anticon-down, .ant-dropdown-button > .anticon.anticon-down {
+  /* font-size: 10px; */
+  margin-top: -5px;
+  /* width: 50px; */
+  /* font-weight: 700 !important; */
+  /* vertical-align: baseline; */
+}
 .ant-card {
   margin: 10px 20px !important;
   background-color: white !important;
-  border: 5px solid black !important;
+  /* border: 1px solid black !important; */
+  border-radius: 30px !important;
 }
 .ant-card:hover {
-  box-shadow: 6px 6px 0 #000 !important;
+  /* box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.089) !important; */
   /* cursor: pointer; */
   transform: translateY(-5px);
   transition: 2s all linear;
+  cursor: pointer;
 }
 .ant-card-head {
-  height: 40px !important;
-  margin-bottom: 2px !important;
-  border-bottom: 1px solid #000000 !important;
+  /* height: 40px !important; */
+  /* margin-bottom: 2px !important; */
+  /* border-bottom: 1px solid #000000 !important;  */
 }
 
 .ant-card-bordered .ant-card-cover {
-  margin-bottom: 2px !important;
-  border-bottom: 1px solid #000000 !important;
+  /* margin-bottom: 2px !important; */
+  /* border-bottom: 1px solid #000000 !important; */
+  border-radius: 30px !important;
+}
+.ant-card-cover img {
+  border-radius: 9px 6px 0px 0px !important;
+}
+
+.dropDown
+{
+  margin-left: 20rem;
 }
 
 .cardHeadBox {
   width: 20px;
   height: 20px;
-  background-color: #9a9a9a;
-  box-shadow: 1px 1px 0px #484b50, 2px 2px 0px #484b50, 3px 3px 0px #484b50,
-    4px 4px 0px #484b50, 5px 5px 0px #484b50, 6px 6px 0px #484b50;
+  /* background-color: #9a9a9a; */
+  /* box-shadow: 1px 1px 0px #484b50, 2px 2px 0px #484b50, 3px 3px 0px #484b50,
+    4px 4px 0px #484b50, 5px 5px 0px #484b50, 6px 6px 0px #484b50; */
 }
 .ant-card-head-wrapper {
   height: 45px;
@@ -46,7 +124,7 @@
 }
 
 .cardData p {
-  margin: 0;
+  margin: 0 !important;
   font-weight: 700;
 }
 
@@ -64,7 +142,7 @@
 }
 
 .ant-card-body {
-  border-top: 1px solid black;
+  /* border-top: 1px solid black;  */
 }
 
 @media (min-width: 300px) {
@@ -75,6 +153,14 @@
   .cardInfo {
     margin-left: -8rem !important;
   }
+  .dropDown
+  { 
+    flex-wrap: nowrap;
+    flex-direction: column;
+   display: block;
+   margin-left: 5rem;
+   }
+ 
 }
 
 @media (min-width: 400px) {
@@ -85,6 +171,11 @@
   .cardInfo {
     margin-left: -8rem !important;
   }
+  /* .dropDown
+  { 
+    margin-left: 1rem !important;
+
+  } */
 }
 
 @media (min-width: 460px) {
@@ -114,17 +205,16 @@
   .cardInfo {
     margin-left: -9rem !important;
   }
+  .dropDown
+  { 
+  
+    flex-direction: row;
+   display: flex;
+   /* margin-left: 5rem; */
+   }
 }
 
-@media (min-width: 668px) {
-  .rentScreen {
-    margin-left: 2rem !important;
-    /* width: 710px; */
-  }
-  .cardInfo {
-    margin-left: -5rem !important;
-  }
-}
+ 
 @media (min-width: 767px) {
   .rentScreen {
     margin-left: 2rem !important;
@@ -141,6 +231,47 @@
   }
   .cardInfo {
     margin-left: 0rem !important;
+  }
+}
+@media (min-width: 992px) {
+  .rentScreen {
+    margin-left: 0rem !important;
+    width: 100%;
+  }
+  .cardInfo {
+    margin-left: 0rem !important;
+  }
+  .dropDown
+  {
+    margin-left: -4rem;
+  }
+}
+
+@media (min-width: 1202px) {
+  .rentScreen {
+    margin-left: 0rem !important;
+    width: 100%;
+  }
+  .cardInfo {
+    margin-left: 0rem !important;
+  }
+  .dropDown
+  {
+    margin-left: 19rem;
+  }
+}
+
+@media (min-width: 1402px) {
+  .rentScreen {
+    margin-left: 0rem !important;
+    width: 100%;
+  }
+  .cardInfo {
+    margin-left: 0rem !important;
+  }
+  .dropDown
+  {
+    margin-left: 19rem !important;
   }
 }
 

@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Switch } from "antd";
 import { Pagination, List } from "antd";
-
+import { Menu, Dropdown, Button, message, Space, Tooltip } from "antd";
 import "./style-R.css";
 import "./style.css";
-import DashoboardCard from "./card";
+import RentCard from "./card";
 import { rentData } from "../../data/index";
-import { useStore } from '../../context/GlobalState';
+import { useStore } from "../../context/GlobalState";
+import { DownOutlined, UserOutlined } from '@ant-design/icons';
 
 const Dashboard = () => {
   const pageSize = 8;
-  const [{ web3, contract, accounts, apiUrl }, dispatch] = useStore();
+  const [{ web3, accounts, apiUrl }, dispatch] = useStore();
 
   const [rentStateData, setRentStateData] = useState([]);
   console.log(rentStateData);
@@ -20,30 +21,16 @@ const Dashboard = () => {
   const [totalPage, settotalPage] = useState(0);
 
   useEffect(async () => {
-    if(web3 && contract && accounts[0]) {
-    const myHeaders = new Headers();
-    myHeaders.append('Content-Type', 'application/json');
-    myHeaders.append('Authorization', `Bearer ${process.env.REACT_APP_SIGN}`);
-    let ownerAddress = accounts[0];
-    const requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: JSON.stringify({
-          ownerAddress
-        })
-    };
-    let fetchData = await fetch(`${apiUrl}dashboard`,requestOptions)
-    fetchData = await fetchData.json();
-    console.log("fetcgDatafetcgData",fetchData)
+    // let fetchData = await fetch(`${apiUrl}list_nfts`)
+    // fetchData = await fetchData.json();
+    // console.log("fetcgDatafetcgData",fetchData)
 
-    fetchData = fetchData ? fetchData.data : fetchData;
-    setRentStateData(fetchData);
+    // fetchData = fetchData ? fetchData.data : fetchData;
+    setRentStateData(rentData);
     setminValue(0);
     setmaxValue(pageSize);
-    settotalPage(fetchData.length / pageSize);
-  }
-}
-, [web3,contract,accounts]);
+    settotalPage(rentData.length / pageSize);
+  }, []);
 
   function onChange(checked) {
     console.log(`switch to ${checked}`);
@@ -55,20 +42,72 @@ const Dashboard = () => {
     setmaxValue(value * pageSize);
   };
 
+  const menu = (
+    <Menu onClick={handleMenuClick}>
+      <Menu.Item key="1"  style={{fontWeight:'600',fontSize:'16px'}}>
+        Single Items
+      </Menu.Item>
+      <hr/>
+      <Menu.Item key="2" style={{fontWeight:'600',fontSize:'16px'}} >
+        Bundles
+      </Menu.Item>
+       
+    </Menu>
+  );
+  const menu2 = (
+    <Menu onClick={handleMenuClick}>
+     <Menu.Item key="1"  style={{fontWeight:'600',fontSize:'16px'}}>
+        Recently List
+      </Menu.Item>
+      <hr/>
+      <Menu.Item key="2" style={{fontWeight:'600',fontSize:'16px'}} >
+      Recently Created
+   </Menu.Item>
+     <hr/>
+     <Menu.Item key="2" style={{fontWeight:'600',fontSize:'16px'}} >
+      Recently Sold
+   </Menu.Item>
+   <hr/>
+     <Menu.Item key="2" style={{fontWeight:'600',fontSize:'16px'}} >
+      Recently Recieved
+   </Menu.Item>
+    </Menu>
+  );
+  
+function handleMenuClick(e) {
+  // message.info('Click on menu item.');
+  console.log('click', e);
+}
+
   return (
     <>
       {/* Rent Screen  */}
       <div className=" ">
-        <div className="row my-4 rentScreen   ">
+        <div className="row my-4     ">
+          <div className="col-12">
           <div className="row  ">
-            <div className=" mt-4 my-2 ms-lg-5    col-lg-11 d-flex justify-content-end">
-              <p className="me-2  text-white toogleText ">
-                {" "}
-                AVAILABLE TO Dashboard
-              </p>
-              <div className=" toggle">
-                <Switch defaultChecked onChange={onChange} />
+             <div className="col-lg-6  my-2  ">
+             <p className="ms-5 ">66,290,741 results</p>
+             </div>
+            <div className="  my-2       col-lg-6  ">
+             
+              <div className="d-flex dropDown" >
+              <div className="me-3  ">
+                <Dropdown overlay={menu}>
+                  <Button>
+                    All Items <DownOutlined />
+                  </Button>
+                </Dropdown>
               </div>
+                <div className="mt-3 mt-md-0">
+                <Dropdown overlay={menu2}>
+                  <Button>
+                    Recently Created <DownOutlined />
+                  </Button>
+                </Dropdown>
+              </div>
+                </div>
+            
             </div>
           </div>
           <div className="row cardInfo">
@@ -77,8 +116,8 @@ const Dashboard = () => {
                   (data, index) =>
                     index >= minValue &&
                     index < maxValue && (
-                      <div className="col-md-6 col-lg-4 col-sm-12 offset-sm-2 offset-3 col-xl-3  offset-lg-0 offset-md-0  ">
-                        <DashoboardCard data={data} />
+                      <div className="col-md-6 col-lg-3  col-sm-6   offset-3 col-xl-2 col-xxl-2  offset-lg-0 offset-md-0  ">
+                        <RentCard data={data} />
                       </div>
                     )
                 )
@@ -94,6 +133,7 @@ const Dashboard = () => {
                 style={{ bottom: "0px" }}
               />
             </div>
+          </div>
           </div>
         </div>
       </div>
