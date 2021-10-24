@@ -37,7 +37,7 @@ const RentCard = ({ data }) => {
             </p>
           </div>
         </div>
-
+        <button className="btn      rentBtnX">Rent Now</button>
         <div className="footer d-flex justify-content-between">
         <div>
           <p className="text-end">

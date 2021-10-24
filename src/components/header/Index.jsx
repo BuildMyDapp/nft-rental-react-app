@@ -23,8 +23,7 @@ const suffix = (
   
   return (
     <>
-    <div className="row">
-      <div className="col-lg-12">
+     
  <nav class="navbar navbar-expand-lg navbar-light bg-light Navbarx   " 
      >
       <form class="form-inline my-2 ms-5 my-lg-0">
@@ -62,8 +61,8 @@ const suffix = (
    
   </div>
 </nav>
-      </div>
-    </div>
+       
+    
      
       {/* Navbar */}
 

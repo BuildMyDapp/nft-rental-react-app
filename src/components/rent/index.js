@@ -99,7 +99,7 @@ function handleMenuClick(e) {
                   </Button>
                 </Dropdown>
               </div>
-                <div className="mt-3 mt-md-0">
+                <div className="mt-3 mt-sm-0 mt-md-0    ">
                 <Dropdown overlay={menu2}>
                   <Button>
                     Recently Created <DownOutlined />

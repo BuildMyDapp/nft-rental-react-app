@@ -209,9 +209,10 @@
   { 
   
     flex-direction: row;
-   display: flex;
+    display: flex;
    /* margin-left: 5rem; */
    }
+   
 }
 
  
@@ -245,6 +246,10 @@
   {
     margin-left: -4rem;
   }
+  .rentBtnX
+  {
+    margin-left: 0.5rem !important;
+  }
 }
 
 @media (min-width: 1202px) {
@@ -257,7 +262,20 @@
   }
   .dropDown
   {
-    margin-left: 19rem;
+    margin-left: 0rem;
+  }
+  .rentBtnX
+  {
+    margin-left: 0rem !important; 
+    /* padding: 0 !important; */
+  }
+}
+
+@media (min-width: 1302px) {
+  
+  .dropDown
+  {
+    margin-left: 7rem !important;
   }
 }
 
@@ -271,7 +289,19 @@
   }
   .dropDown
   {
+    margin-left: 9rem !important;
+  }
+}
+
+@media (min-width: 1560px) {
+   
+  .dropDown
+  {
     margin-left: 19rem !important;
+  }
+  .rentBtnX
+  {
+    margin-left: 2rem !important;
   }
 }
 
@@ -298,4 +328,13 @@
 
 .ant-pagination-item {
   margin-right: 10px !important;
+}
+
+
+.rentBtnX
+{
+    background-color: #6868FC !important;
+    color: white !important;
+    
+    border-radius: 10px !important;
 }

@@ -79,14 +79,17 @@
   .Navbarx {
     width: 26rem !important;
   }
-
-  .navbar-collapse .navbar-nav {
+  body 
+  {
+    overflow-x: hidden !important;
+  }
+  /* .navbar-collapse .navbar-nav {
     margin-left: 2rem !important;
   }
 
   .navbar-collapse .navbar-nav .nav-item.nav-item.active {
     width: 50px !important;
-  }
+  } */
 }
 @media (min-width: 360px) {
   .Navbarx {
@@ -110,6 +113,7 @@
   .Navbarx {
     width: 51rem !important;
   }
+   
 }
 @media (min-width: 800px) {
   .Navbarx {
@@ -117,112 +121,42 @@
   }
 }
 @media (min-width: 992px) {
-  .navbar-collapse .navbar-nav {
+  /* .navbar-collapse .navbar-nav {
     margin-left: 28rem !important;
   }
 
   .navbar-collapse .navbar-nav .nav-item.nav-item.active {
     width: 100% !important;
-  }
+  } */
   .Navbarx {
-    width: 100% !important;
+    width:100% !important;
   }
+  body 
+  {
+    overflow-x: hidden !important;
+  }
+ 
 }
-
-@media (min-width: 1300px) {
+ 
+@media (min-width: 1302px) {
   .ant-input-affix-wrapper {
     width: 900px !important;
   }
-}
-
-@media (min-width: 300px) {
-  .navbarSelectMain {
-    margin-left: 0rem !important;
+  .Navbarx {
+    width:100% !important;
+      
   }
-  .Navbar ul {
-    width: 38rem !important;
-    margin-left: -5rem !important;
-  }
-  .header__wallet {
-    margin-top: 2rem !important;
-    margin-left: 1rem;
-  }
-  .header__logo {
-    background-image: url(../../wlogo.svg);
-    background-size: auto 50px !important;
-    background-repeat: no-repeat !important;
-    height: 50px !important;
-    width: 300px !important;
-  }
-}
-
-@media (min-width: 458px) {
-  .Navbar ul {
-    width: 42rem !important;
-    margin-left: -5rem !important;
-  }
-  .header__wallet {
-    margin-top: 2rem !important;
-    margin-left: 1rem;
-  }
-}
-
-@media (min-width: 576px) {
-  .header__wallet {
-    margin-left: 9rem !important;
-    margin-top: 0 !important;
+  
+  /* .navbar-collapse .navbar-nav {
+    margin-left: 25rem !important;
   }
 
-  .navbarSelectMain {
-    margin-left: 4rem !important;
-    margin-top: 3rem !important;
-  }
-  .navbarSelectMainX {
-    margin-left: 4rem;
-  }
-  .Navbar ul {
-    width: 25rem !important;
-    margin-left: 1rem !important;
-  }
-}
-
-@media (min-width: 767px) {
-  .navbarSelectMain {
-    margin-left: 5rem !important;
-    margin-top: 5rem !important;
-  }
-  .header__wallet {
-    margin-left: 4rem !important;
-  }
-
-  .Navbar ul {
-    width: 25rem !important;
-    margin-left: 1rem !important;
-  }
-  .navbarSelectMainX {
-    margin-left: 5rem;
-  }
-}
-
-@media (min-width: 900px) {
-  .navbarSelectMainX {
-    margin-left: 5rem;
-  }
-}
-
-@media (min-width: 991px) {
-  .navbarSelectMainX {
-    margin-left: 00em;
-  }
-  .Navbar ul {
-    margin-left: 0rem !important;
-    width: 35rem;
-  }
-  .navbarSelectMain {
-    margin-top: 0rem !important;
-  }
-  .header__wallet {
-    margin-left: 0rem !important;
+  .navbar-collapse .navbar-nav .nav-item.nav-item.active {
+    width: 100% !important;
+  } */
+  body 
+  {
+    overflow-y: hidden !important;
   }
 }
 
