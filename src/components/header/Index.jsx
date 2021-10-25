@@ -43,7 +43,7 @@ const suffix = (
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav me-5 ms-auto">
+    <ul class="navbar-nav me-5 ms-sm-4  ms-4 ms-lg-auto ">
       <li  className={location?.pathname==="/"? "nav-item active":"nav-item "}>
         <Link to="/" class="nav-link"  >RENT  </Link>
       </li>

@@ -178,6 +178,33 @@
   } */
 }
 
+
+@media (max-width: 411px) {
+ 
+  .cardInfo {
+    margin-left: -4rem !important;
+    width: 22rem;
+  }
+  /* .dropDown
+  { 
+    margin-left: 1rem !important;
+
+  } */
+}
+
+@media (max-width: 414px) {
+ 
+  .cardInfo {
+    margin-left: -4rem !important;
+    width: 22rem;
+  }
+  /* .dropDown
+  { 
+    margin-left: 1rem !important;
+
+  } */
+}
+
 @media (min-width: 460px) {
   .rentScreen {
     margin-left: 3rem !important;

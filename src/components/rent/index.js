@@ -87,7 +87,7 @@ function handleMenuClick(e) {
           <div className="col-12">
           <div className="row  ">
              <div className="col-lg-6  my-2  ">
-             <p className="ms-5 ">66,290,741 results</p>
+             <p className="ms-5 text-sm-center text-center  text-lg-start">66,290,741 results</p>
              </div>
             <div className="  my-2       col-lg-6  ">
              
