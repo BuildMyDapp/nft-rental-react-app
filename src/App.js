@@ -8,13 +8,13 @@ import {
   Header,
   PublishNft
 } from "./components/exportComponents";
-
+import "./App.css";
 function App() {
   return (
     <>
       <Router>
-        <div className="container-lg mt-5">
-          <Header />
+          <Header /> 
+        <div className=" container mt-5">
           <Routes>
             <Route path="/" element={<Rent />} exact />
             <Route path="/lend" element={<Lend />} />
