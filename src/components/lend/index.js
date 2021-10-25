@@ -26,20 +26,7 @@ const Lend = () => {
 
   useEffect(async () => {
     if (web3 && contract && accounts[0]) {
-      const myHeaders = new Headers();
-      myHeaders.append('Content-Type', 'application/json');
-      myHeaders.append('Authorization', `Bearer ${process.env.REACT_APP_SIGN}`);
-      let ownerAddress = accounts[0];
-      const requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: JSON.stringify({
-          ownerAddress
-        })
-      };
-      let fetchData = await fetch(`${apiUrl}lend_nft_list`, requestOptions)
-      fetchData = await fetchData.json();
-      console.log("fetcgDatafetcgData", fetchData)
+     
 
       // fetchData = fetchData ? fetchData.data : fetchData;
       // setRentStateData(fetchData);
