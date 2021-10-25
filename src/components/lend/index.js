@@ -8,10 +8,10 @@ import RentCard from "./card";
 import { rentData } from "../../data/index";
 import { useStore } from "../../context/GlobalState";
 import { DownOutlined, UserOutlined } from '@ant-design/icons';
-
 const Lend = () => {
   const pageSize = 8;
-  const [{ web3, accounts, apiUrl }, dispatch] = useStore();
+  const [{ web3, accounts, contract, apiUrl }, dispatch] = useStore();
+
 
   const [rentStateData, setRentStateData] = useState([]);
   console.log(rentStateData);
@@ -44,40 +44,41 @@ const Lend = () => {
 
   const menu = (
     <Menu onClick={handleMenuClick}>
-      <Menu.Item key="1"  style={{fontWeight:'600',fontSize:'16px'}}>
+      <Menu.Item key="1" style={{ fontWeight: '600', fontSize: '16px' }}>
         Single Items
       </Menu.Item>
-      <hr/>
-      <Menu.Item key="2" style={{fontWeight:'600',fontSize:'16px'}} >
+      <hr />
+      <Menu.Item key="2" style={{ fontWeight: '600', fontSize: '16px' }} >
         Bundles
       </Menu.Item>
-       
+
     </Menu>
   );
   const menu2 = (
     <Menu onClick={handleMenuClick}>
-     <Menu.Item key="1"  style={{fontWeight:'600',fontSize:'16px'}}>
+      <Menu.Item key="1" style={{ fontWeight: '600', fontSize: '16px' }}>
         Recently List
       </Menu.Item>
-      <hr/>
-      <Menu.Item key="2" style={{fontWeight:'600',fontSize:'16px'}} >
-      Recently Created
+      <hr />
+      <Menu.Item key="2" style={{ fontWeight: '600', fontSize: '16px' }} >
+        Recently Created
    </Menu.Item>
-     <hr/>
-     <Menu.Item key="2" style={{fontWeight:'600',fontSize:'16px'}} >
-      Recently Sold
+      <hr />
+      <Menu.Item key="2" style={{ fontWeight: '600', fontSize: '16px' }} >
+        Recently Sold
    </Menu.Item>
-   <hr/>
-     <Menu.Item key="2" style={{fontWeight:'600',fontSize:'16px'}} >
-      Recently Recieved
+      <hr />
+      <Menu.Item key="2" style={{ fontWeight: '600', fontSize: '16px' }} >
+        Recently Recieved
    </Menu.Item>
     </Menu>
   );
-  
-function handleMenuClick(e) {
-  // message.info('Click on menu item.');
-  console.log('click', e);
-}
+
+  function handleMenuClick(e) {
+    // message.info('Click on menu item.');
+    console.log('click', e);
+  }
+
 
   return (
     <>
@@ -85,34 +86,34 @@ function handleMenuClick(e) {
       <div className=" ">
         <div className="row my-4     ">
           <div className="col-12">
-          <div className="row  ">
-             <div className="col-lg-6  my-2  ">
-             <p className="ms-5 ">66,290,741 results</p>
-             </div>
-            <div className="  my-2       col-lg-6  ">
-             
-              <div className="d-flex dropDown" >
-              <div className="me-3  ">
-                <Dropdown overlay={menu}>
-                  <Button>
-                    All Items <DownOutlined />
-                  </Button>
-                </Dropdown>
+            <div className="row  ">
+              <div className="col-lg-6  my-2  ">
+                <p className="ms-5 ">66,290,741 results</p>
               </div>
-                <div className="mt-3 mt-md-0">
-                <Dropdown overlay={menu2}>
-                  <Button>
-                    Recently Created <DownOutlined />
-                  </Button>
-                </Dropdown>
-              </div>
+              <div className="  my-2       col-lg-6  ">
+
+                <div className="d-flex dropDown" >
+                  <div className="me-3  ">
+                    <Dropdown overlay={menu}>
+                      <Button>
+                        All Items <DownOutlined />
+                      </Button>
+                    </Dropdown>
+                  </div>
+                  <div className="mt-3 mt-md-0">
+                    <Dropdown overlay={menu2}>
+                      <Button>
+                        Recently Created <DownOutlined />
+                      </Button>
+                    </Dropdown>
+                  </div>
                 </div>
-            
+
+              </div>
             </div>
-          </div>
-          <div className="row cardInfo">
-            {rentStateData
-              ? rentStateData.map(
+            <div className="row cardInfo">
+              {rentStateData
+                ? rentStateData.map(
                   (data, index) =>
                     index >= minValue &&
                     index < maxValue && (
@@ -121,19 +122,19 @@ function handleMenuClick(e) {
                       </div>
                     )
                 )
-              : ""}
-          </div>
-          <div className="row">
-            <div className="col-lg-12 mt-4  mb-3 text-center">
-              <Pagination
-                pageSize={pageSize}
-                current={current}
-                total={rentStateData?.length}
-                onChange={handleChange}
-                style={{ bottom: "0px" }}
-              />
+                : ""}
             </div>
-          </div>
+            <div className="row">
+              <div className="col-lg-12 mt-4  mb-3 text-center">
+                <Pagination
+                  pageSize={pageSize}
+                  current={current}
+                  total={rentStateData ?.length}
+                  onChange={handleChange}
+                  style={{ bottom: "0px" }}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

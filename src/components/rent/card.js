@@ -4,8 +4,23 @@ import "./style.css";
 import { Card } from "antd";
 import opensea from "../../../src/opensea.png";
 import rarible from "../../../src/rarible.png";
+import { rentAsync } from '../../store/asyncActions';
+import { useStore } from "../../context/GlobalState";
+
 const RentCard = ({ data }) => {
   console.log(data);
+
+  const [{ web3, accounts, contract, apiUrl }, dispatch] = useStore();
+
+  const handleLend = async () => {
+
+    try {
+      let receipt = await rentAsync(web3, contract, accounts)
+    }
+    catch (error) {
+      console.log("handle lend error", error)
+    }
+  }
   return (
     <>
       <Card
@@ -37,7 +52,7 @@ const RentCard = ({ data }) => {
             </p>
           </div>
         </div>
-        <button className="btn      rentBtnX">Rent Now</button>
+        <button className="btn      rentBtnX" onClick={handleLend}>Rent Now</button>
         <div className="footer d-flex justify-content-between">
         <div>
           <p className="text-end">

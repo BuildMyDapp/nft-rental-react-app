@@ -21,11 +21,6 @@ const Dashboard = () => {
   const [totalPage, settotalPage] = useState(0);
 
   useEffect(async () => {
-    // let fetchData = await fetch(`${apiUrl}list_nfts`)
-    // fetchData = await fetchData.json();
-    // console.log("fetcgDatafetcgData",fetchData)
-
-    // fetchData = fetchData ? fetchData.data : fetchData;
     setRentStateData(rentData);
     setminValue(0);
     setmaxValue(pageSize);
