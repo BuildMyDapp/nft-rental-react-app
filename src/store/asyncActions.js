@@ -96,7 +96,7 @@ export const lendAsync = async(web3,contract,accounts) =>{
         // dailyRent = dailyRent.slice(0, 10) 
         // console.log("contractfunctiossn",dailyRent)
         // let bytes32 = ethers.utils.formatBytes32String("100")
-        let receipt = await contract.methods.lend(["0xd43136799c9AE15d33D7648a1Dc8655501160358"],["2"],["1"],["2"],["0x000003e8"],["0x000007d0"],["1"]).send({from:accounts[0]});
+        let receipt = await contract.methods.lend(["0xd43136799c9AE15d33D7648a1Dc8655501160358"],["7"],["1"],["2"],["0x000003e8"],["0x000007d0"],["1"]).send({from:accounts[0]});
 
     }   
     catch(error){
@@ -107,7 +107,7 @@ export const lendAsync = async(web3,contract,accounts) =>{
 
 export const rentAsync = async(web3,contract,accounts) =>{
     try{
-    let receipt = await contract.methods.rent(["0xd43136799c9AE15d33D7648a1Dc8655501160358"],["1"],["1"],["2"]).send({from:accounts[0]});
+    let receipt = await contract.methods.rent(["0xd43136799c9AE15d33D7648a1Dc8655501160358"],["7"],["4"],["2"]).send({from:accounts[0]});
         return receipt
     }   
     catch(error){
@@ -118,7 +118,7 @@ export const rentAsync = async(web3,contract,accounts) =>{
 
 export const stopLendingAsync = async(web3,contract,accounts) =>{
     try{
-    let receipt = await contract.methods.stopLending(["0xd43136799c9AE15d33D7648a1Dc8655501160358"],["1"],["1"]).send({from:accounts[0]});
+    let receipt = await contract.methods.stopLending(["0xd43136799c9AE15d33D7648a1Dc8655501160358"],["7"],["5"]).send({from:accounts[0]});
         return receipt
     }   
     catch(error){

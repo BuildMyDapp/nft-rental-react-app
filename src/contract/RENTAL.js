@@ -1,4 +1,4 @@
-export const RENTAL_ADDRESS = "0x84F60019bA8b023A22b5f98C46EC3bc54dF5FDf1";
+export const RENTAL_ADDRESS = "0xc02a69fB3eeA97ff0B5C1970012D44f35694D81a";
 export const RENTAL_ABI = [
 	{
 		"inputs": [
