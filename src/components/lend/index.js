@@ -11,7 +11,7 @@ import Moralis from 'moralis';
 import { DownOutlined, UserOutlined } from '@ant-design/icons';
 
 const Lend = () => {
-  const pageSize = 8;
+  const pageSize = 12;
   const [{ web3, accounts, contract, apiUrl }, dispatch] = useStore();
 
   useEffect(async () => {

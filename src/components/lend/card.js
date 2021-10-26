@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style-R.css";
 import "./style.css";
 import { Card } from "antd";
@@ -6,6 +6,8 @@ import opensea from "../../../src/opensea.png";
 import rarible from "../../../src/rarible.png";
 import { lendAsync } from '../../store/asyncActions';
 import { useStore } from "../../context/GlobalState";
+import Modal from '@material-ui/core/Modal';
+import LendNftModal from '../../modal/lendNft/index'
 
 const LendCard = ({ data }) => {
   const [{ web3, accounts, contract, apiUrl }, dispatch] = useStore();
@@ -14,12 +16,42 @@ const LendCard = ({ data }) => {
 
     try {
       let receipt = await lendAsync(web3, contract, accounts)
+      if (receipt) {
+        // const myHeaders = new Headers();
+        // myHeaders.append('Content-Type', 'application/json');
+        // myHeaders.append('Authorization', `Bearer ${process.env.REACT_APP_SIGN}`);
+        // const requestOptions = {
+        //   method: 'POST',
+        //   headers: myHeaders,
+        //   body: JSON.stringify({
+        //     name, description,
+        //     image, token_address, token_id,
+        //     payment_period, down_payment_period, duration, amount, image_uri, owner_address, nfT_colletral_id,
+        //     currency_address
+        //   })
+        // };
+        // let fetchNftData = await fetch(`${apiUrl}save_nft`, requestOptions);
+
+        // fetchNftData = await fetchNftData.json();
+
+      }
     }
     catch (error) {
       console.log("handle lend error", error)
     }
   }
+
+  const [lendModal, setLendModal] = useState(false);
+
   console.log(data);
+
+  const lendModalOpen = () => {
+    setLendModal(true);
+  };
+
+  const lendModalClose = () => {
+    setLendModal(false);
+  };
   return (
     <>
       <Card
@@ -51,7 +83,7 @@ const LendCard = ({ data }) => {
             </p>
           </div>
         </div>
-        <button className="btn      rentBtnX" onClick={handleLend}>Lend Now</button>
+        <button className="btn      rentBtnX" onClick={lendModalOpen}>Lend Now</button>
         <div className="footer d-flex justify-content-between">
           <div>
             <p className="text-end">
@@ -66,6 +98,15 @@ const LendCard = ({ data }) => {
 
         </div>
       </Card>
+
+      <Modal
+        open={lendModal}
+        onClose={lendModalClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        <LendNftModal data={data} lendModalClose={lendModalClose} />
+      </Modal>
     </>
   );
 };
