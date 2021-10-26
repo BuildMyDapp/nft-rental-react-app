@@ -7,10 +7,49 @@ import "./style.css";
 import RentCard from "./card";
 import { rentData } from "../../data/index";
 import { useStore } from "../../context/GlobalState";
+import Moralis from 'moralis';
 import { DownOutlined, UserOutlined } from '@ant-design/icons';
+
 const Lend = () => {
   const pageSize = 8;
   const [{ web3, accounts, contract, apiUrl }, dispatch] = useStore();
+
+  useEffect(async () => {
+    const serverUrl = "https://zrgs9ntgp1xg.grandmoralis.com:2053/server";
+    const appId = "ehjdZ3SrJBc8mvotS9zIVpJ3ERQ1hXLolg9rJo2d";
+    // let t = await Moralis.start({serverUrl,appId})
+    Moralis.initialize("ehjdZ3SrJBc8mvotS9zIVpJ3ERQ1hXLolg9rJo2d", "", "sO7IJveC1wGqenEclYGF8He9mdAqkqBASB34l5bp");
+    Moralis.serverURL = 'https://zrgs9ntgp1xg.grandmoralis.com:2053/server'
+    // console.log("lol",t)
+    Moralis.authenticate().then(async function (user) {
+      console.log("etherAddress", user.get("ethAddress"))
+      const users = Moralis.User.current();
+      console.log("user", users)
+      Moralis.start({ serverUrl, appId });
+
+      const usernftBalance = await Moralis.Web3.getNFTs({ chain: "rinkeby" })
+
+      // console.log("metaData", metaData)
+      let nftArray = []
+      for (let i = 0; i < usernftBalance.length; i++) {
+        let neo = {}
+        neo['token_id'] = usernftBalance[i].token_id
+        neo['token_address'] = usernftBalance[i].token_address
+
+        nftArray.push(neo);
+        console.log("dsdsad", neo)
+      
+      }
+      // setAllNftData(nftArray)
+
+      
+    setRentStateData(nftArray);
+    setminValue(0);
+    setmaxValue(pageSize);
+    settotalPage(nftArray.length / pageSize);
+      
+    })
+  }, [])
 
 
   const [rentStateData, setRentStateData] = useState([]);
@@ -21,15 +60,11 @@ const Lend = () => {
   const [totalPage, settotalPage] = useState(0);
 
   useEffect(async () => {
-    // let fetchData = await fetch(`${apiUrl}list_nfts`)
-    // fetchData = await fetchData.json();
-    // console.log("fetcgDatafetcgData",fetchData)
 
-    // fetchData = fetchData ? fetchData.data : fetchData;
-    setRentStateData(rentData);
-    setminValue(0);
-    setmaxValue(pageSize);
-    settotalPage(rentData.length / pageSize);
+    // setRentStateData(rentData);
+    // setminValue(0);
+    // setmaxValue(pageSize);
+    // settotalPage(rentData.length / pageSize);
   }, []);
 
   function onChange(checked) {

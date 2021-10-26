@@ -28,7 +28,7 @@ const LendCard = ({ data }) => {
           <img
             alt="card "
             className="cardImg"
-            src={data ?.image_uri}
+            src="https://bafybeidjwr4dikewpqitz3hrfkrn64sxtddiynjv5kow3w6pzpuwgoysi4.ipfs.infura-ipfs.io/"
             width="240"
             height="200"
           />
