@@ -3,10 +3,11 @@ import {
   Error404,
   Rent,
   Lend,
-  Dashboard,
+  LendDashboard,
   Faq,
   Header,
-  PublishNft
+  PublishNft,
+  RentDashboard
 } from "./components/exportComponents";
 import "./App.css";
 function App() {
@@ -18,7 +19,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Rent />} exact />
             <Route path="/lend" element={<Lend />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/lend_dashboard" element={<LendDashboard />} />
+            <Route path="/rent_dashboard" element={<RentDashboard />} />
+
             <Route path="/faq" element={<Faq />} />
             <Route path="/publish_nft" element={<PublishNft />} />
             <Route path="*" element={<Error404 />} />

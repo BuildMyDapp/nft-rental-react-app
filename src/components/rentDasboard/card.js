@@ -1,23 +1,23 @@
-import React, { useState } from "react";
+import React,{useState} from "react";
 import "./style-R.css";
 import "./style.css";
 import { Card } from "antd";
 import opensea from "../../../src/opensea.png";
 import rarible from "../../../src/rarible.png";
-import { rentAsync } from '../../store/asyncActions';
+import { stopLendingAsync } from '../../store/asyncActions';
 import { useStore } from "../../context/GlobalState";
-import RentNftModal from '../../modal/rentNft/index'
 import Modal from '@material-ui/core/Modal';
+import ReturnItModal from '../../modal/returnIt'
 
-const RentCard = ({ data }) => {
+const DashboardCard = ({ data }) => {
   console.log(data);
 
   const [{ web3, accounts, contract, apiUrl }, dispatch] = useStore();
 
-  const handleLend = async () => {
+  const handleStopLending = async () => {
 
     try {
-      let receipt = await rentAsync(web3, contract, accounts)
+      let receipt = await stopLendingAsync(web3, contract, accounts)
     }
     catch (error) {
       console.log("handle lend error", error)
@@ -55,7 +55,7 @@ const RentCard = ({ data }) => {
           </div>
           <div>
             <p className="text-end price">Price </p>
-            <p className="eth-icon"> 
+            <p className="eth-icon">
               {" "}
               <span>
                 {" "}
@@ -65,31 +65,32 @@ const RentCard = ({ data }) => {
             </p>
           </div>
         </div>
-        <button className="btn      rentBtnX" onClick={rentModalOpen}>Rent Now</button>
+        <button className="btn      rentBtnX" onClick={rentModalOpen}>Return Nft</button>
         <div className="footer d-flex justify-content-between">
-        <div>
-          <p className="text-end">
-            <i className="fas fa-cog setting" style={{color:'darkgray'}}  ></i> 
-          </p>
+          <div>
+            <p className="text-end">
+              <i className="fas fa-cog setting" style={{ color: 'darkgray' }}  ></i>
+            </p>
           </div>
           <div>
-          <p className="text-end">
-            <i className="fas fa-heart  Hearticon" style={{color:'darkgray'}} ></i><span className="ms-1">2</span>
-          </p>
+            <p className="text-end">
+              <i className="fas fa-heart  Hearticon" style={{ color: 'darkgray' }} ></i><span className="ms-1">2</span>
+            </p>
           </div>
-         
+
         </div>
       </Card>
-      <Modal
+
+          <Modal
         open={rentModal}
         onClose={rentModalClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        <RentNftModal data={data} rentModalClose={rentModalClose} />
+        <ReturnItModal data={data} rentModalClose={rentModalClose} />
       </Modal>
     </>
   );
 };
 
-export default RentCard;
+export default DashboardCard;

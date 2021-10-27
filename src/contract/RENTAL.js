@@ -1,4 +1,4 @@
-export const RENTAL_ADDRESS = "0xAF9a33340156acdEB177595f5258c246d2C2439B";
+export const RENTAL_ADDRESS = "0xf11628e74c2D68CfdFaDf51eBb0EC4033FbA49f3";
 export const RENTAL_ABI = [
 	{
 		"inputs": [
@@ -175,19 +175,6 @@ export const RENTAL_ABI = [
 		],
 		"name": "Returned",
 		"type": "event"
-	},
-	{
-		"inputs": [],
-		"name": "ERC20Token",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
 	},
 	{
 		"inputs": [
@@ -524,27 +511,5 @@ export const RENTAL_ABI = [
 		],
 		"stateMutability": "view",
 		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "whatPrice",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
 	}
 ]
-
-//uri
-//https://rinkeby.etherscan.io/address/0x8ec346712ef9c59c13c52599b0be37bf183e13de#code

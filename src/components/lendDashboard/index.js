@@ -9,7 +9,7 @@ import { rentData } from "../../data/index";
 import { useStore } from "../../context/GlobalState";
 import { DownOutlined, UserOutlined } from '@ant-design/icons';
 
-const Dashboard = () => {
+const LendDashboard = () => {
   const pageSize = 8;
   const [{ web3, accounts, apiUrl }, dispatch] = useStore();
 
@@ -21,13 +21,31 @@ const Dashboard = () => {
   const [totalPage, settotalPage] = useState(0);
 
   useEffect(async () => {
-    
 
-    setRentStateData(rentData);
+    if(web3 && accounts && accounts[0]) {
+      let owner_address = accounts[0];
+    const myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+        myHeaders.append('Authorization', `Bearer ${process.env.REACT_APP_SIGN}`);
+        const requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: JSON.stringify({
+            owner_address
+          })
+        };
+
+    let fetchNftData = await fetch(`${apiUrl}lend_dashboard_list`,requestOptions);
+    fetchNftData = await fetchNftData.json();
+    fetchNftData = fetchNftData.data
+    console.log("fetchNftData", fetchNftData)
+
+    setRentStateData(fetchNftData);
     setminValue(0);
     setmaxValue(pageSize);
-    settotalPage(rentData.length / pageSize);
-  }, []);
+    settotalPage(fetchNftData.length / pageSize);
+  }
+  }, [web3,accounts]);
 
   function onChange(checked) {
     console.log(`switch to ${checked}`);
@@ -138,4 +156,4 @@ function handleMenuClick(e) {
   );
 };
 
-export default Dashboard;
+export default LendDashboard;

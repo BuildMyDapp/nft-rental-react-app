@@ -42,19 +42,22 @@ const suffix = (
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav me-5 ms-sm-4  ms-4 ms-lg-auto ">
+  <div className="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul className="navbar-nav me-5 ms-sm-4  ms-4 ms-lg-auto ">
       <li  className={location?.pathname==="/"? "nav-item active":"nav-item "}>
-        <Link to="/" class="nav-link"  >RENT  </Link>
+        <Link to="/" className="nav-link"  >RENT  </Link>
       </li>
       <li className={location?.pathname==="/lend"? "nav-item active":"nav-item "}>
-        <Link to="/lend" class="nav-link"  >LEND</Link>
+        <Link to="/lend" className="nav-link"  >LEND</Link>
       </li>
-      <li className={location?.pathname==="/dashboard"? "nav-item active":"nav-item "}>
-        <Link to="/dashboard" class="nav-link" >DASHBOARD</Link>
+      <li className={location?.pathname==="/lend_dashboard"? "nav-item active":"nav-item "}>
+        <Link to="/lend_dashboard" className="nav-link" >LEND DASHBOARD</Link>
+      </li>
+      <li className={location?.pathname==="/rent_dashboard"? "nav-item active":"nav-item "}>
+        <Link to="/rent_dashboard" className="nav-link" >RENT DASHBOARD</Link>
       </li>
       <li className={location?.pathname==="/faq"? "nav-item active":"nav-item "}>
-        <Link to ="/faq" class="nav-link" >FAQ</Link>
+        <Link to ="/faq" className="nav-link" >FAQ</Link>
       </li>
      
     </ul>

@@ -8,7 +8,7 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { liftNftColetralAsync } from '../../store/asyncActions';
 import { makeApiTrigger } from '../../store/actions';
 import 'dotenv'
-import { rentAsync } from '../../store/asyncActions';
+import { rentAsync, stopLendingAsync } from '../../store/asyncActions';
 import { ERC20_ABI } from '../../contract/ERC20_ABI'
 import { packPrice, unpackDailyPrice } from '../../store/bytesHandler'
 import { RENTAL_ADDRESS } from '../../contract/RENTAL'
@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const RentNftModal = ({ data, handleCloseResellModal }) => {
+const ReturnItModal = ({ data, handleCloseResellModal }) => {
   const [qrCode, setQrCode] = useState(false);
   const [{ web3, accounts, contract, apiUrl }, dispatch] = useStore();
   let [colletral, setColletral] = useState("");
@@ -80,33 +80,7 @@ const RentNftModal = ({ data, handleCloseResellModal }) => {
     // loadBlockchain(dispatch);
   }, []);
 
-  const handleApprove = async () => {
-    try {
-      let token_address = data.token_address;
-      let token_id = data.token_id;
-      let _nftPrices = unpackDailyPrice("0x00640000");
-      let _dailyRentPrices = unpackDailyPrice("0x000a0000");
-      console.log(
-        "unpacked", _nftPrices, _dailyRentPrices
-      )
-      const contractErc20 = new web3.eth.Contract(ERC20_ABI, "0x1029E8ceC41B6e31fFB94Ef16Ff0484D4c127041");
-      console.log("contractErc20", contractErc20.methods);
-      let amount = 300 * 10 ** 18;
-      amount = amount.toString()
-      console.log("amount", amount)
-      console.log("before", token_id, RENTAL_ADDRESS, amount)
-      let receipt = await contractErc20.methods.approve(RENTAL_ADDRESS, amount).send({ from: accounts[0] })
-      console.log("receipt", receipt)
-      let approval = await contractErc20.methods.allowance(accounts[0], RENTAL_ADDRESS).call();
-      approval = approval.toString();
-      console.log("approval", approval)
-      setApproveToggle(true)
 
-    }
-    catch (error) {
-      console.log("error", error)
-    }
-  }
   const onSubmit = async () => {
 
     let token_id = data.token_id;
@@ -117,15 +91,13 @@ const RentNftModal = ({ data, handleCloseResellModal }) => {
       let daily_rent_price = packPrice(dailyPrice);
       let nft_price = packPrice(colletral);
       console.log("data", data)
+      let token_address = data.token_address;      
       let lend_id = data.lend_id
-      let receipt = await rentAsync(web3, contract, accounts, token_address, token_id, lend_id, duration)
+      let receipt = await stopLendingAsync(web3, contract, accounts, token_address, token_id, lend_id)
       console.log("receipt", receipt)
       if (receipt && receipt.status) {
-        let token_address = data.token_address;
-
-        let token_uri = data.token_uri;
+   
         let id = data.id
-        let user_address = accounts[0]
 
 
 
@@ -136,25 +108,22 @@ const RentNftModal = ({ data, handleCloseResellModal }) => {
           method: 'POST',
           headers: myHeaders,
           body: JSON.stringify({
-          id,user_address
+            id
           })
         };
-        let fetchNftData = await fetch(`${apiUrl}rent_update`, requestOptions);
+        let fetchNftData = await fetch(`${apiUrl}return_it`, requestOptions);
 
         fetchNftData = await fetchNftData.json();
 
       }
 
 
-      // let neo = unpackDailyPrice(0x00010000);
-      // console.log("neo",neo)
+   
     }
     catch (error) {
       console.log("error", error);
     }
   };
-
-  console.log("datadatadatadata", data)
 
 
 
@@ -163,37 +132,13 @@ const RentNftModal = ({ data, handleCloseResellModal }) => {
     <div>
       <>
         <div style={modalStyle} className={classes.paper}>
-          <h1 style={{ color: "black" }}>Rent your NFT </h1>
-          <TextField type="text"
-            className="text-field" placeholder="duration" label="duration" type="text" value={duration} onChange={(e) => setDuration(e.target.value)}
-          />
-          {/* <TextField type="text"
-            className="text-field" placeholder="Amount" label="Enter Colletral" type="text" value={colletral} onChange={(e) => setColletral(e.target.value)}
-          />
-          <TextField type="text"
-            className="text-field" placeholder="dailyPrice" label="Daily Price" type="text" value={dailyPrice} onChange={(e) => setDailyPrice(e.target.value)}
-          /> */}
-
-          {
-            approveToggle ?
+          <h1 style={{ color: "black" }}>Return your NFT </h1>
+        
               <button className="buy-btn" onClick={onSubmit}
               >
-                Rent now
+                Return It 
           </button>
-              :
-              <button className="buy-btn" onClick={handleApprove}
-              >
-                Approve
-      </button>
-          }
-
-
-          {/* <button className="buy-btn" onClick={onSubmit}
-              >
-                Rent now
-          </button> */}
-
-
+      
         </div>
       </>
 
@@ -201,4 +146,4 @@ const RentNftModal = ({ data, handleCloseResellModal }) => {
   );
 };
 
-export default RentNftModal;
+export default ReturnItModal;

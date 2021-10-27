@@ -83,12 +83,12 @@ export const loadWalletConnect = async (dispatch) => {
 
 
 export const lendAsync = async (web3, contract, accounts, token_address, token_id, duration, dailyprice, nftPrice) => {
-    console.log("contractfunction", contract)
+    console.log("contractfunction", token_address, token_id, duration, dailyprice, nftPrice)
 
 
     try {
 
-        let receipt = await contract.methods.lend([token_address], [token_id], ["1"], [duration], [dailyprice], [nftPrice], ["3"]).send({ from: accounts[0] });
+        let receipt = await contract.methods.lend([token_address], [token_id], [1], [duration], [dailyprice], [nftPrice], [1]).send({ from: accounts[0] });
         return receipt
     }
     catch (error) {
@@ -97,9 +97,12 @@ export const lendAsync = async (web3, contract, accounts, token_address, token_i
     }
 }
 
-export const rentAsync = async (web3, contract, accounts) => {
+export const rentAsync = async (web3, contract, accounts, token_address, token_id, lending_id, duration) => {
+    console.log("before transaction", token_address, token_id, lending_id, duration)
     try {
-        let receipt = await contract.methods.rent(["0xd43136799c9AE15d33D7648a1Dc8655501160358"], ["7"], ["4"], ["2"]).send({ from: accounts[0] });
+        // let receipt = await contract.methods.rent(["0x9957f6fb41d0B557C616D4d0aAfF90a47D12B3B2"], ["1"], ["4"], ["1"]).send({ from: accounts[0] });
+        let receipt = await contract.methods.rent([token_address], [token_id], [lending_id], [duration]).send({ from: accounts[0] });
+
         return receipt
     }
     catch (error) {
@@ -108,9 +111,21 @@ export const rentAsync = async (web3, contract, accounts) => {
     }
 }
 
-export const stopLendingAsync = async (web3, contract, accounts) => {
+export const stopLendingAsync = async (web3, contract, accounts,token_address,token_id,lending_id) => {
     try {
-        let receipt = await contract.methods.stopLending(["0xd43136799c9AE15d33D7648a1Dc8655501160358"], ["7"], ["5"]).send({ from: accounts[0] });
+        let receipt = await contract.methods.stopLending([token_address], [token_id], [lending_id]).send({ from: accounts[0] });
+        return receipt
+    }
+    catch (error) {
+        console.log("error", error)
+        return error
+    }
+}
+
+
+export const returnItAsync = async (web3, contract, accounts) => {
+    try {
+        let receipt = await contract.methods.returnIt(["0xd43136799c9AE15d33D7648a1Dc8655501160358"], ["7"], ["5"]).send({ from: accounts[0] });
         return receipt
     }
     catch (error) {
