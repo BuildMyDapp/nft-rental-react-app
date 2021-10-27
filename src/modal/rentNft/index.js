@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const LendNftModal = ({ data, handleCloseResellModal }) => {
+const RentNftModal = ({ data, handleCloseResellModal }) => {
   const [qrCode, setQrCode] = useState(false);
   const [{ web3, accounts, contract, apiUrl }, dispatch] = useStore();
   let [colletral, setColletral] = useState("");
@@ -191,4 +191,4 @@ const LendNftModal = ({ data, handleCloseResellModal }) => {
   );
 };
 
-export default LendNftModal;
+export default RentNftModal;

@@ -21,6 +21,8 @@ const Dashboard = () => {
   const [totalPage, settotalPage] = useState(0);
 
   useEffect(async () => {
+    
+
     setRentStateData(rentData);
     setminValue(0);
     setmaxValue(pageSize);

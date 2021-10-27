@@ -30,24 +30,27 @@ const Lend = () => {
       const usernftBalance = await Moralis.Web3.getNFTs({ chain: "rinkeby" })
 
       // console.log("metaData", metaData)
+      console.log("usernftBalance", usernftBalance)
+
       let nftArray = []
       for (let i = 0; i < usernftBalance.length; i++) {
         let neo = {}
         neo['token_id'] = usernftBalance[i].token_id
         neo['token_address'] = usernftBalance[i].token_address
+        neo['token_uri'] = usernftBalance[i].token_uri
 
         nftArray.push(neo);
         console.log("dsdsad", neo)
-      
+
       }
       // setAllNftData(nftArray)
 
-      
-    setRentStateData(nftArray);
-    setminValue(0);
-    setmaxValue(pageSize);
-    settotalPage(nftArray.length / pageSize);
-      
+
+      setRentStateData(nftArray);
+      setminValue(0);
+      setmaxValue(pageSize);
+      settotalPage(nftArray.length / pageSize);
+
     })
   }, [])
 
