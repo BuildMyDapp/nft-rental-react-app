@@ -20,25 +20,25 @@ const Rent = () => {
   const [current, setCurrentPage] = useState(1);
   const [totalPage, settotalPage] = useState(0);
 
-  // useEffect(async () => {
-  //   // let fetchData = await fetch(`${apiUrl}list_nfts`)
-  //   // fetchData = await fetchData.json();
-  //   // console.log("fetcgDatafetcgData",fetchData)
+  useEffect(async () => {
+    // let fetchData = await fetch(`${apiUrl}list_nfts`)
+    // fetchData = await fetchData.json();
+    // console.log("fetcgDatafetcgData",fetchData)
 
-  //   // fetchData = fetchData ? fetchData.data : fetchData;
-  //   const myHeaders = new Headers();
-  //   myHeaders.append('Content-Type', 'application/json');
-  //   myHeaders.append('Authorization', `Bearer ${process.env.REACT_APP_SIGN}`);
-  //   let fetchNftData = await fetch(`${apiUrl}nft_for_rent`);
-  //   fetchNftData = await fetchNftData.json();
-  //   fetchNftData = fetchNftData.data
-  //   console.log("fetchNftData", fetchNftData)
+    // fetchData = fetchData ? fetchData.data : fetchData;
+    const myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+    myHeaders.append('Authorization', `Bearer ${process.env.REACT_APP_SIGN}`);
+    let fetchNftData = await fetch(`${apiUrl}nft_for_rent`);
+    fetchNftData = await fetchNftData.json();
+    fetchNftData = fetchNftData.data
+    console.log("fetchNftData", fetchNftData)
 
-  //   setRentStateData(fetchNftData);
-  //   setminValue(0);
-  //   setmaxValue(pageSize);
-  //   settotalPage(fetchNftData.length / pageSize);
-  // }, []);
+    setRentStateData(fetchNftData);
+    setminValue(0);
+    setmaxValue(pageSize);
+    settotalPage(fetchNftData.length / pageSize);
+  }, []);
 
   function onChange(checked) {
     console.log(`switch to ${checked}`);
