@@ -72,6 +72,9 @@ const ReturnItModal = ({ data, handleCloseResellModal }) => {
   let [dailyPrice, setDailyPrice] = useState("");
   let [duration, setDuration] = useState("");
   let [approveToggle, setApproveToggle] = useState(false);
+  const [nftPrice, setNftPrice] = useState()
+  const [dailyRentPrice, setdailyRentPrice] = useState()
+  const [tokenId, settokenId] = useState()
 
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
@@ -80,23 +83,31 @@ const ReturnItModal = ({ data, handleCloseResellModal }) => {
     // loadBlockchain(dispatch);
   }, []);
 
+  useEffect(async () => {
+    console.log("data",data)
+    let nft_price = unpackDailyPrice(data.nft_price);
+    setNftPrice(nft_price);
+    let daily_rent_price = unpackDailyPrice(data.daily_rent_price);
+    setdailyRentPrice(daily_rent_price);
+    settokenId(data.token_id)
+    setDuration(data.duration)
+  }, [])
 
   const onSubmit = async () => {
 
     let token_id = data.token_id;
     let token_address = data.token_address;
-    console.log("ew", token_id, colletral, dailyPrice, duration, token_address)
 
     try {
       let daily_rent_price = packPrice(dailyPrice);
       let nft_price = packPrice(colletral);
       console.log("data", data)
-      let token_address = data.token_address;      
+      let token_address = data.token_address;
       let lend_id = data.lend_id
       let receipt = await stopLendingAsync(web3, contract, accounts, token_address, token_id, lend_id)
       console.log("receipt", receipt)
       if (receipt && receipt.status) {
-   
+
         let id = data.id
 
 
@@ -118,7 +129,7 @@ const ReturnItModal = ({ data, handleCloseResellModal }) => {
       }
 
 
-   
+
     }
     catch (error) {
       console.log("error", error);
@@ -133,12 +144,45 @@ const ReturnItModal = ({ data, handleCloseResellModal }) => {
       <>
         <div style={modalStyle} className={classes.paper}>
           <h1 style={{ color: "black" }}>Return your NFT </h1>
-        
-              <button className="buy-btn" onClick={onSubmit}
-              >
-                Return It 
+          <div className="modal-container">
+            <p className="p1">
+              nft price
+            </p>
+            <p className="p2">
+              {nftPrice ? nftPrice : 0}
+            </p>
+          </div>
+       
+          <div className="modal-container">
+            <p className="p1">
+            Daily Rent price
+            </p>
+            <p className="p2">
+              {dailyRentPrice ? dailyRentPrice : 0}
+            </p>
+          </div>
+          <div className="modal-container">
+            <p className="p1">
+           Token id
+            </p>
+            <p className="p2">
+              {tokenId ? tokenId : 0}
+            </p>
+          </div>
+
+             <div className="modal-container">
+            <p className="p1">
+           Duration
+            </p>
+            <p className="p2">
+              {duration ? duration : 0}
+            </p>
+          </div>
+          <button className="buy-btn" onClick={onSubmit}
+          >
+            Return It
           </button>
-      
+
         </div>
       </>
 

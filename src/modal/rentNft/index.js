@@ -72,13 +72,24 @@ const RentNftModal = ({ data, handleCloseResellModal }) => {
   let [dailyPrice, setDailyPrice] = useState("");
   let [duration, setDuration] = useState("");
   let [approveToggle, setApproveToggle] = useState(false);
-
+  const [nftPrice, setNftPrice] = useState()
+  const [dailyRentPrice, setdailyRentPrice] = useState()
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
 
   const sendRequest = useCallback(async () => {
     // loadBlockchain(dispatch);
   }, []);
+
+
+  useEffect(async () => {
+    console.log("data",data)
+    let nft_price = unpackDailyPrice(data.nft_price);
+    setNftPrice(nft_price);
+    let daily_rent_price = unpackDailyPrice(data.daily_rent_price);
+    setdailyRentPrice(daily_rent_price);
+
+  }, [])
 
   const handleApprove = async () => {
     try {
@@ -163,17 +174,32 @@ const RentNftModal = ({ data, handleCloseResellModal }) => {
     <div>
       <>
         <div style={modalStyle} className={classes.paper}>
+
           <h1 style={{ color: "black" }}>Rent your NFT </h1>
+
+             <div className="modal-container">
+            <p className="p1">
+              nft price
+            </p>
+            <p className="p2">
+              {nftPrice ? nftPrice : 0}
+            </p>
+          </div>
+       
+          <div className="modal-container">
+            <p className="p1">
+            Daily Rent price
+            </p>
+            <p className="p2">
+              {dailyRentPrice ? dailyRentPrice : 0}
+            </p>
+          </div>
+
+          
           <TextField type="text"
             className="text-field" placeholder="duration" label="duration" type="text" value={duration} onChange={(e) => setDuration(e.target.value)}
           />
-          {/* <TextField type="text"
-            className="text-field" placeholder="Amount" label="Enter Colletral" type="text" value={colletral} onChange={(e) => setColletral(e.target.value)}
-          />
-          <TextField type="text"
-            className="text-field" placeholder="dailyPrice" label="Daily Price" type="text" value={dailyPrice} onChange={(e) => setDailyPrice(e.target.value)}
-          /> */}
-
+  
           {
             approveToggle ?
               <button className="buy-btn" onClick={onSubmit}
