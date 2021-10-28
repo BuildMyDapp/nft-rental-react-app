@@ -14,45 +14,45 @@ const Lend = () => {
   const pageSize = 12;
   const [{ web3, accounts, contract, apiUrl }, dispatch] = useStore();
 
-  useEffect(async () => {
-    const serverUrl = "https://zrgs9ntgp1xg.grandmoralis.com:2053/server";
-    const appId = "ehjdZ3SrJBc8mvotS9zIVpJ3ERQ1hXLolg9rJo2d";
-    // let t = await Moralis.start({serverUrl,appId})
-    Moralis.initialize("ehjdZ3SrJBc8mvotS9zIVpJ3ERQ1hXLolg9rJo2d", "", "sO7IJveC1wGqenEclYGF8He9mdAqkqBASB34l5bp");
-    Moralis.serverURL = 'https://zrgs9ntgp1xg.grandmoralis.com:2053/server'
-    // console.log("lol",t)
-    Moralis.authenticate().then(async function (user) {
-      console.log("etherAddress", user.get("ethAddress"))
-      const users = Moralis.User.current();
-      console.log("user", users)
-      Moralis.start({ serverUrl, appId });
+  // useEffect(async () => {
+  //   const serverUrl = "https://zrgs9ntgp1xg.grandmoralis.com:2053/server";
+  //   const appId = "ehjdZ3SrJBc8mvotS9zIVpJ3ERQ1hXLolg9rJo2d";
+  //   // let t = await Moralis.start({serverUrl,appId})
+  //   Moralis.initialize("ehjdZ3SrJBc8mvotS9zIVpJ3ERQ1hXLolg9rJo2d", "", "sO7IJveC1wGqenEclYGF8He9mdAqkqBASB34l5bp");
+  //   Moralis.serverURL = 'https://zrgs9ntgp1xg.grandmoralis.com:2053/server'
+  //   // console.log("lol",t)
+  //   Moralis.authenticate().then(async function (user) {
+  //     console.log("etherAddress", user.get("ethAddress"))
+  //     const users = Moralis.User.current();
+  //     console.log("user", users)
+  //     Moralis.start({ serverUrl, appId });
 
-      const usernftBalance = await Moralis.Web3.getNFTs({ chain: "rinkeby" })
+  //     const usernftBalance = await Moralis.Web3.getNFTs({ chain: "rinkeby" })
 
-      // console.log("metaData", metaData)
-      console.log("usernftBalance", usernftBalance)
+  //     // console.log("metaData", metaData)
+  //     console.log("usernftBalance", usernftBalance)
 
-      let nftArray = []
-      for (let i = 0; i < usernftBalance.length; i++) {
-        let neo = {}
-        neo['token_id'] = usernftBalance[i].token_id
-        neo['token_address'] = usernftBalance[i].token_address
-        neo['token_uri'] = usernftBalance[i].token_uri
+  //     let nftArray = []
+  //     for (let i = 0; i < usernftBalance.length; i++) {
+  //       let neo = {}
+  //       neo['token_id'] = usernftBalance[i].token_id
+  //       neo['token_address'] = usernftBalance[i].token_address
+  //       neo['token_uri'] = usernftBalance[i].token_uri
 
-        nftArray.push(neo);
-        console.log("dsdsad", neo)
+  //       nftArray.push(neo);
+  //       console.log("dsdsad", neo)
 
-      }
-      // setAllNftData(nftArray)
+  //     }
+  //     // setAllNftData(nftArray)
 
 
-      setRentStateData(nftArray);
-      setminValue(0);
-      setmaxValue(pageSize);
-      settotalPage(nftArray.length / pageSize);
+  //     setRentStateData(nftArray);
+  //     setminValue(0);
+  //     setmaxValue(pageSize);
+  //     settotalPage(nftArray.length / pageSize);
 
-    })
-  }, [])
+  //   })
+  // }, [])
 
 
   const [rentStateData, setRentStateData] = useState([]);
