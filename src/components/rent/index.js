@@ -101,14 +101,14 @@ const Rent = () => {
 
                 <div className="d-flex dropDown" >
                   <div className="me-3  ">
-                    <Dropdown overlay={menu}>
+                    <Dropdown overlay={menu} trigger={['click']}>
                       <Button>
                         All Items <DownOutlined />
                       </Button>
                     </Dropdown>
                   </div>
                   <div className="mt-3 mt-sm-0 mt-md-0    ">
-                    <Dropdown overlay={menu2}>
+                    <Dropdown overlay={menu2} trigger={['click']}>
                       <Button>
                         Recently Created <DownOutlined />
                       </Button>
