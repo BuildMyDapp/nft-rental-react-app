@@ -44,10 +44,10 @@ const suffix = (
 
   <div className="collapse navbar-collapse" id="navbarSupportedContent">
     <ul className="navbar-nav me-5 ms-sm-4    ms-lg-auto ">
-      <li  className={location?.pathname==="/"? "nav-item active":"nav-item "}>
+      <li  className={location?.pathname==="/"? "nav-item activeZ":"nav-item "}>
         <Link to="/" className="nav-link"  >MARKET </Link>
       </li>
-      <li className={location?.pathname==="/lend"? "nav-item active":"nav-item "}>
+      <li className={location?.pathname==="/lend"? "nav-item activeZ":"nav-item "}>
         <Link to="/lend" className="nav-link"  >LEND</Link>
       </li>
       <li className={location?.pathname==="/lend_dashboard"? "nav-item activeX":"nav-item "}>

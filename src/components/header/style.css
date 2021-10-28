@@ -46,6 +46,11 @@
   border-bottom: 3px solid rgba(0, 0, 255, 0.582) !important;
 
 }
+.nav-item.activeZ 
+{
+  border-bottom: 3px solid rgba(0, 0, 255, 0.582);
+
+}
 @media (min-width: 300px) {
   .ant-input-affix-wrapper {
     width: 190px !important;
@@ -80,6 +85,11 @@
   }
   .navbar-nav .nav-item.active{
     width: 40px !important;
+  }
+  .navbar-nav .nav-item.activeZ
+  {
+    width: 60px !important;
+
   }
 }
 
@@ -151,6 +161,13 @@
     width: 179px !important;
 
   }
+  .navbar-nav .nav-item.activeZ
+  {
+    width: 80px !important;
+
+  }
+
+
  
 }
  
