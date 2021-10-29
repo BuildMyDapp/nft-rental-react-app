@@ -16,9 +16,18 @@
     font-weight: 700;
     font-size: 19px;
 }
-
+.p1{
+    margin-right: 30px
+}
+.p2{
+    margin-left: 30px
+}
 .modal-img{
     width: 100px 
+}
+.modal-container{
+    display: flex;
+    justify-content:space-between
 }
 .buy-btn-disabled{
     text-align: center;

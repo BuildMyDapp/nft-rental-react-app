@@ -111,7 +111,7 @@ export const rentAsync = async (web3, contract, accounts, token_address, token_i
     }
 }
 
-export const stopLendingAsync = async (web3, contract, accounts,token_address,token_id,lending_id) => {
+export const stopLendingAsync = async (web3, contract, accounts, token_address, token_id, lending_id) => {
     try {
         let receipt = await contract.methods.stopLending([token_address], [token_id], [lending_id]).send({ from: accounts[0] });
         return receipt
@@ -123,13 +123,23 @@ export const stopLendingAsync = async (web3, contract, accounts,token_address,to
 }
 
 
-export const returnItAsync = async (web3, contract, accounts) => {
+export const returnItAsync = async (web3, contract, accounts, token_address, token_id, lending_id) => {
     try {
-        let receipt = await contract.methods.returnIt(["0xd43136799c9AE15d33D7648a1Dc8655501160358"], ["7"], ["5"]).send({ from: accounts[0] });
+        let receipt = await contract.methods.returnIt([token_address], [token_id], [lending_id]).send({ from: accounts[0] });
         return receipt
     }
     catch (error) {
         console.log("error", error)
         return error
+    }
+}
+
+export const claimColletralAsync = async (web3, contract, accounts, token_address, token_id, lending_id) => {
+    try {
+        let receipt = await contract.methods.claimCollateral([token_address], [token_id], [lending_id]).send({ from: accounts[0] });
+        return receipt;
+    }
+    catch (error) {
+        console.log("error", error)
     }
 }

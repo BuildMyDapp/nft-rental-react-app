@@ -43,17 +43,17 @@ const suffix = (
   </button>
 
   <div className="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul className="navbar-nav me-5 ms-sm-4  ms-4 ms-lg-auto ">
-      <li  className={location?.pathname==="/"? "nav-item active":"nav-item "}>
-        <Link to="/" className="nav-link"  >RENT  </Link>
+    <ul className="navbar-nav me-5 ms-sm-4    ms-lg-auto ">
+      <li  className={location?.pathname==="/"? "nav-item activeZ":"nav-item "}>
+        <Link to="/" className="nav-link"  >MARKET </Link>
       </li>
-      <li className={location?.pathname==="/lend"? "nav-item active":"nav-item "}>
+      <li className={location?.pathname==="/lend"? "nav-item activeZ":"nav-item "}>
         <Link to="/lend" className="nav-link"  >LEND</Link>
       </li>
-      <li className={location?.pathname==="/lend_dashboard"? "nav-item active":"nav-item "}>
+      <li className={location?.pathname==="/lend_dashboard"? "nav-item activeX":"nav-item "}>
         <Link to="/lend_dashboard" className="nav-link" >LEND DASHBOARD</Link>
       </li>
-      <li className={location?.pathname==="/rent_dashboard"? "nav-item active":"nav-item "}>
+      <li className={location?.pathname==="/rent_dashboard"? "nav-item activeX":"nav-item "}>
         <Link to="/rent_dashboard" className="nav-link" >RENT DASHBOARD</Link>
       </li>
       <li className={location?.pathname==="/faq"? "nav-item active":"nav-item "}>

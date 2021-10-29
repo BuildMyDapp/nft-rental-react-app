@@ -20,32 +20,32 @@ const LendDashboard = () => {
   const [current, setCurrentPage] = useState(1);
   const [totalPage, settotalPage] = useState(0);
 
-  // useEffect(async () => {
+  useEffect(async () => {
 
-  //   if(web3 && accounts && accounts[0]) {
-  //     let owner_address = accounts[0];
-  //   const myHeaders = new Headers();
-  //       myHeaders.append('Content-Type', 'application/json');
-  //       myHeaders.append('Authorization', `Bearer ${process.env.REACT_APP_SIGN}`);
-  //       const requestOptions = {
-  //         method: 'POST',
-  //         headers: myHeaders,
-  //         body: JSON.stringify({
-  //           owner_address
-  //         })
-  //       };
+    if(web3 && accounts && accounts[0]) {
+      let owner_address = accounts[0];
+    const myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+        myHeaders.append('Authorization', `Bearer ${process.env.REACT_APP_SIGN}`);
+        const requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: JSON.stringify({
+            owner_address
+          })
+        };
 
-  //   let fetchNftData = await fetch(`${apiUrl}lend_dashboard_list`,requestOptions);
-  //   fetchNftData = await fetchNftData.json();
-  //   fetchNftData = fetchNftData.data
-  //   console.log("fetchNftData", fetchNftData)
+    let fetchNftData = await fetch(`${apiUrl}lend_dashboard_list`,requestOptions);
+    fetchNftData = await fetchNftData.json();
+    fetchNftData = fetchNftData.data
+    console.log("fetchNftData", fetchNftData)
 
-  //   setRentStateData(fetchNftData);
-  //   setminValue(0);
-  //   setmaxValue(pageSize);
-  //   settotalPage(fetchNftData.length / pageSize);
-  // }
-  // }, [web3,accounts]);
+    setRentStateData(fetchNftData);
+    setminValue(0);
+    setmaxValue(pageSize);
+    settotalPage(fetchNftData.length / pageSize);
+  }
+  }, [web3,accounts]);
 
   function onChange(checked) {
     console.log(`switch to ${checked}`);
