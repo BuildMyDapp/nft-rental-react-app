@@ -100,7 +100,7 @@ const RentNftModal = ({ data, handleCloseResellModal }) => {
       console.log(
         "unpacked", _nftPrices, _dailyRentPrices
       )
-      const contractErc20 = new web3.eth.Contract(ERC20_ABI, "0x1029E8ceC41B6e31fFB94Ef16Ff0484D4c127041");
+      const contractErc20 = new web3.eth.Contract(ERC20_ABI, "0xc778417E063141139Fce010982780140Aa0cD5Ab");
       console.log("contractErc20", contractErc20.methods);
       let amount = 300 * 10 ** 18;
       amount = amount.toString()
