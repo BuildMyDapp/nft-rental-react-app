@@ -83,7 +83,7 @@ const RentNftModal = ({ data, handleCloseResellModal }) => {
 
 
   useEffect(async () => {
-    console.log("data",data)
+    console.log("data", data)
     let nft_price = unpackDailyPrice(data.nft_price);
     setNftPrice(nft_price);
     let daily_rent_price = unpackDailyPrice(data.daily_rent_price);
@@ -100,7 +100,7 @@ const RentNftModal = ({ data, handleCloseResellModal }) => {
       console.log(
         "unpacked", _nftPrices, _dailyRentPrices
       )
-      const contractErc20 = new web3.eth.Contract(ERC20_ABI, "0xc778417E063141139Fce010982780140Aa0cD5Ab");
+      const contractErc20 = new web3.eth.Contract(ERC20_ABI, "0xc778417e063141139fce010982780140aa0cd5ab");
       console.log("contractErc20", contractErc20.methods);
       let amount = 300 * 10 ** 18;
       amount = amount.toString()
@@ -125,19 +125,18 @@ const RentNftModal = ({ data, handleCloseResellModal }) => {
     console.log("ew", token_id, colletral, dailyPrice, duration, token_address)
 
     try {
-      let daily_rent_price = packPrice(dailyPrice);
-      let nft_price = packPrice(colletral);
+
       console.log("data", data)
       let lend_id = data.lend_id
       let receipt = await rentAsync(web3, contract, accounts, token_address, token_id, lend_id, duration)
       console.log("receipt", receipt)
       if (receipt && receipt.status) {
-        let token_address = data.token_address;
-
-        let token_uri = data.token_uri;
+        let blockNumber = receipt.blockNumber;
+        let timestamp = await web3.eth.getBlock(blockNumber);
+        let block_timestamp = timestamp.timestamp
         let id = data.id
         let user_address = accounts[0]
-
+        let user_duration = duration
 
 
         const myHeaders = new Headers
@@ -147,7 +146,7 @@ const RentNftModal = ({ data, handleCloseResellModal }) => {
           method: 'POST',
           headers: myHeaders,
           body: JSON.stringify({
-          id,user_address
+            id, user_address, block_timestamp, user_duration
           })
         };
         let fetchNftData = await fetch(`${apiUrl}rent_update`, requestOptions);
@@ -177,7 +176,7 @@ const RentNftModal = ({ data, handleCloseResellModal }) => {
 
           <h1 style={{ color: "black" }}>Rent your NFT </h1>
 
-             <div className="modal-container">
+          <div className="modal-container">
             <p className="p1">
               nft price
             </p>
@@ -185,21 +184,21 @@ const RentNftModal = ({ data, handleCloseResellModal }) => {
               {nftPrice ? nftPrice : 0}
             </p>
           </div>
-       
+
           <div className="modal-container">
             <p className="p1">
-            Daily Rent price
+              Daily Rent price
             </p>
             <p className="p2">
               {dailyRentPrice ? dailyRentPrice : 0}
             </p>
           </div>
 
-          
+
           <TextField type="text"
             className="text-field" placeholder="duration" label="duration" type="text" value={duration} onChange={(e) => setDuration(e.target.value)}
           />
-  
+
           {
             approveToggle ?
               <button className="buy-btn" onClick={onSubmit}

@@ -88,7 +88,7 @@ export const lendAsync = async (web3, contract, accounts, token_address, token_i
 
     try {
 
-        let receipt = await contract.methods.lend([token_address], [token_id], [1], [duration], [dailyprice], [nftPrice], [2]).send({ from: accounts[0] });
+        let receipt = await contract.methods.lend([token_address], [token_id], [1], [duration], [dailyprice], [nftPrice], [1]).send({ from: accounts[0] });
         return receipt
     }
     catch (error) {

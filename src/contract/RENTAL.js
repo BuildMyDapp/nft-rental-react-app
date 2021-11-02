@@ -1,6 +1,8 @@
 //0xe08d95c68C81a2CA97C2A1b1730C0098DbFA8dF5 resolver
 
-export const RENTAL_ADDRESS = "0xf11628e74c2D68CfdFaDf51eBb0EC4033FbA49f3";
+// export const RENTAL_ADDRESS = "0xf11628e74c2D68CfdFaDf51eBb0EC4033FbA49f3";
+export const RENTAL_ADDRESS = "0x17d0f45ea9aD2cfC9b45034ddEE1DE4B5e074b6D";
+
 export const RENTAL_ABI = [
 	{
 		"inputs": [

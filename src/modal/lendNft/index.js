@@ -91,6 +91,12 @@ const LendNftModal = ({ data, handleCloseResellModal }) => {
       console.log("before", token_id, RENTAL_ADDRESS)
       let receipt = await contractErc721.methods.approve(RENTAL_ADDRESS, token_id).send({ from: accounts[0] })
       console.log("receipt", receipt)
+      let blockNumber = receipt.blockNumber;
+      console.log("blockNumber", blockNumber)
+      let neoTime = 4 * 3600;
+      let timestamp = await web3.eth.getBlock(blockNumber);
+      console.log("timestamp", timestamp.timestamp)
+      console.log("timestamp", neoTime)
 
       setApproveToggle(true)
 
@@ -113,9 +119,12 @@ const LendNftModal = ({ data, handleCloseResellModal }) => {
       let receipt = await lendAsync(web3, contract, accounts, token_address, token_id, duration, daily_rent_price, nft_price)
       console.log("receipt", receipt)
       if (receipt && receipt.status) {
+        
+
         let token_address = data.token_address;
 
         let token_uri = data.token_uri;
+        let max_duration = duration;
 
         let owner_address = accounts[0]
 
@@ -130,7 +139,7 @@ const LendNftModal = ({ data, handleCloseResellModal }) => {
           headers: myHeaders,
           body: JSON.stringify({
             owner_address, token_id, token_address, duration, nft_price, daily_rent_price,
-            token_uri
+            token_uri, max_duration
           })
         };
         let fetchNftData = await fetch(`${apiUrl}lend_nft`, requestOptions);

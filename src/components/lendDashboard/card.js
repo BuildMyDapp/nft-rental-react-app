@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState, useEffect } from "react";
 import "./style-R.css";
 import "./style.css";
 import { Card } from "antd";
@@ -7,25 +7,27 @@ import rarible from "../../../src/rarible.png";
 import { stopLendingAsync } from '../../store/asyncActions';
 import { useStore } from "../../context/GlobalState";
 import Modal from '@material-ui/core/Modal';
-import CancelModal from '../../modal/cancelLend'
+import CancelModal from '../../modal/cancelLend';
+import {claimColletralAsync} from '../../store/asyncActions';
 const DashboardCard = ({ data }) => {
   console.log(data);
 
   const [{ web3, accounts, contract, apiUrl }, dispatch] = useStore();
+  const [claimToggle, setClaimToggle] = useState(false)
 
-  const handleStopLending = async () => {
+  useEffect(()=>{
+    let endPoint = data.block_timestamp + data.duration_seconds;
+    let startPoint = ~~(Date.now() / 1000)
+    if (startPoint >= endPoint) {
+      setClaimToggle(true)
+    }
+  },[])
 
-    try {
-      let receipt = await stopLendingAsync(web3, contract, accounts)
-    }
-    catch (error) {
-      console.log("handle lend error", error)
-    }
-  }
+
 
   const [rentModal, setRenModal] = useState(false);
 
-  
+
   const rentModalOpen = () => {
     setRenModal(true);
   };
@@ -33,6 +35,46 @@ const DashboardCard = ({ data }) => {
   const rentModalClose = () => {
     setRenModal(false);
   };
+  const handleClaimColletral = async () => {
+    let token_id = data.token_id;
+    let token_address = data.token_address;
+
+    try {
+   
+      console.log("data", data)
+      let token_address = data.token_address;
+      let lend_id = data.lend_id
+      let receipt = await claimColletralAsync(web3, contract, accounts, token_address, token_id, lend_id)
+      console.log("receipt", receipt)
+      if (receipt && receipt.status) {
+
+        let id = data.id
+
+
+
+        const myHeaders = new Headers
+        myHeaders.append('Content-Type', 'application/json');
+        myHeaders.append('Authorization', `Bearer ${process.env.REACT_APP_SIGN}`);
+        const requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: JSON.stringify({
+            id
+          })
+        };
+        let fetchNftData = await fetch(`${apiUrl}claim_nft`, requestOptions);
+
+        fetchNftData = await fetchNftData.json();
+
+      }
+
+
+
+    }
+    catch (error) {
+      console.log("error", error);
+    }
+  }
   return (
     <>
       <Card
@@ -64,7 +106,20 @@ const DashboardCard = ({ data }) => {
             </p>
           </div>
         </div>
-        <button className="btn      rentBtnX" onClick={rentModalOpen}>Stop Lending</button>
+        {
+          data.rental == 1 ?
+            <>
+              {
+                claimToggle ?
+                  <button className="btn      rentBtnX" onClick={handleClaimColletral}>Claim Colletral</button>
+                  :
+                  <button className="btn      rentBtnX" style={{ cursor: "not-allowed" }}>Claim Colletral</button>
+              }
+            </>
+            :
+            <button className="btn      rentBtnX" onClick={rentModalOpen}>Stop Lending</button>
+
+        }
         <div className="footer d-flex justify-content-between">
           <div>
             <p className="text-end">
