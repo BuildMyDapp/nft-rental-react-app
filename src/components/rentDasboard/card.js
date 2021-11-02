@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import "./style-R.css";
 import "./style.css";
 import { Card } from "antd";
@@ -13,16 +13,9 @@ const DashboardCard = ({ data }) => {
   console.log(data);
 
   const [{ web3, accounts, contract, apiUrl }, dispatch] = useStore();
+  const [returnIt, setreturnIt] = useState(false)
 
-  const handleStopLending = async () => {
 
-    try {
-      let receipt = await stopLendingAsync(web3, contract, accounts)
-    }
-    catch (error) {
-      console.log("handle lend error", error)
-    }
-  }
 
   const [rentModal, setRenModal] = useState(false);
 
@@ -34,6 +27,19 @@ const DashboardCard = ({ data }) => {
   const rentModalClose = () => {
     setRenModal(false);
   };
+
+  
+  useEffect(()=>{
+    let endPoint = data.block_timestamp + data.duration_seconds;
+    let startPoint = ~~(Date.now() / 1000)
+    if (startPoint <= endPoint) {
+      setreturnIt(true)
+    }
+  },[])
+
+
+
+
   return (
     <>
       <Card
@@ -65,7 +71,13 @@ const DashboardCard = ({ data }) => {
             </p>
           </div>
         </div>
-        <button className="btn      rentBtnX" onClick={rentModalOpen}>Return Nft</button>
+        {
+          returnIt ?
+          <button className="btn      rentBtnX" onClick={rentModalOpen}>Return Nft</button>
+:
+<button className="btn      rentBtnX" style={{cursor:"not-allowed"}}>Return Nft</button>
+
+        }
         <div className="footer d-flex justify-content-between">
           <div>
             <p className="text-end">

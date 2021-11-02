@@ -96,22 +96,13 @@ const ReturnItModal = ({ data, handleCloseResellModal }) => {
   const onSubmit = async () => {
 
     let token_id = data.token_id;
-    let token_address = data.token_address;
 
     try {
-      let daily_rent_price = packPrice(dailyPrice);
-      let nft_price = packPrice(colletral);
-      console.log("data", data)
       let token_address = data.token_address;
       let lend_id = data.lend_id
       let receipt = await stopLendingAsync(web3, contract, accounts, token_address, token_id, lend_id)
-      console.log("receipt", receipt)
       if (receipt && receipt.status) {
-
         let id = data.id
-
-
-
         const myHeaders = new Headers
         myHeaders.append('Content-Type', 'application/json');
         myHeaders.append('Authorization', `Bearer ${process.env.REACT_APP_SIGN}`);

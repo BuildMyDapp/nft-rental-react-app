@@ -10,8 +10,8 @@ const initialState = {
     accounts: [],
     contract: null,
     apiTrigger: false,
-    // apiUrl: "https://rental-api.buildmydapp.co/",
-    apiUrl: "http://localhost:8080/",
+    apiUrl: "https://rental-api.buildmydapp.co/",
+    // apiUrl: "http://localhost:8080/",
     web3LoadingErrorMessage: "",
     web3Loadded: false
 }
